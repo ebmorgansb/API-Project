@@ -1,21 +1,19 @@
 // backend/routes/api/index.js
 const express = require('express')
-const {Spot, Booking, Review, ReviewImage, SpotImage} = require('../../db/models');
+const {Spot, Booking, Review, ReviewImage, SpotImage, User} = require('../../db/models');
 const spot = require('../../db/models/spot');
 const router = express.Router();
 // backend/routes/api/session.js
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { ExclusionConstraintError } = require('sequelize');
 
 
 //Get All Spots
+//
 router.get('/', async (req, res) => {
     let allSpots = await Spot.findAll({
        include: [{model: Review}, {model: SpotImage}]
-    //   //  {model: SpotImage,
-    //   //   attributes: 'previewImage'
-    //   // }
-    // ]
     })
     let spotArr = []
     for (let i = 0; i <allSpots.length; i++) {
@@ -85,6 +83,8 @@ handleValidationErrors
 ];
 
 //Create new spot
+//
+//
 router.post('/', validateNewSpot, async (req, res) => {
   const {address, city, state, country, lat, lng, name, description, price} = req.body
 
@@ -101,12 +101,14 @@ router.post('/', validateNewSpot, async (req, res) => {
   })
   let newSpotFinal = newSpot.dataValues
   newSpotFinal.ownerId = req.user.id
-  console.log(req.user.id)
+  console.log(newSpotFinal)
   // newSpot[0].ownerId = req.user.id
   res.json(newSpotFinal)
 })
 
 //Add image to a spot based on spot id
+//
+//
 router.post('/:spotId/images', async (req,res) => {
   const spotId = req.params.spotId
   let {url, preview} = req.body
@@ -145,11 +147,57 @@ assocSpot.previewImage = spotImg.url
 })
 
 
+// get all spots owned by current user
+//
+//currSpots is an empty array even though I can see in the database there are associated spots to the current user id
+router.get('/current', async (req, res) => {
 
+  const currUserId = req.user.id
 
+    const currSpots = await Spot.findAll({
+      where: {
+        ownerId: currUserId
+      }
+    })
 
+  // const currUser = await User.findOne({
+  //   where: {id: currUserId},
+  //   include: {model: Spot}
+  // })
+  console.log(currSpots)
+return res.json(currSpots)
 
+})
 
+//get details of a spot by an id
+router.get('/:spotId', async (req, res) => {
+
+  const spotDetailId = req.params.spotId
+  const spotDeets = await Spot.findOne({
+    where: {
+      id: spotDetailId
+    }
+    //  include: [{model: SpotImage}],
+  })
+  const spotDeetsOb = spotDeets.dataValues
+  const deetSpotImages = await SpotImage.findAll({
+    where: {
+      spotId: spotDetailId
+    },
+    attributes: {
+      exclude: [ 'createdAt', 'updatedAt', 'spotId']
+    }
+  })
+  //Need to get the owner and add it to the spotDeets somehow
+  const spotOwner = await User.findOne({
+    where: {
+      id:
+    }
+  })
+  spotDeetsOb.SpotImages = deetSpotImages[0].dataValues
+  res.json(spotDeetsOb)
+
+})
 
 
 
