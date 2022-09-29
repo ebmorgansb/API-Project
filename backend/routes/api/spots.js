@@ -183,7 +183,7 @@ router.get('/current', async (req, res) => {
       console.log(starz)
       counter += starz
       }
-      
+
       for (let i = 0; i < images.length; i++) {
         let image = images[i]
         let url = image.url
@@ -207,76 +207,80 @@ router.get('/current', async (req, res) => {
 // get details of a spot by an id
 //
 //
-router.get('/:spotId', async (req, res) => {
+// router.get('/:spotId', async (req, res) => {
 
-  const spotDetailId = req.params.spotId
-  const spotDeets = await Spot.findOne({
-    where: {
-      id: spotDetailId
-    }
-    //  include: [{model: SpotImage}],
-  })
+//   const spotDetailId = req.params.spotId
+//   const spotDeets = await Spot.findOne({
+//     where: {
+//       id: spotDetailId
+//     }
+//     //  include: [{model: SpotImage}],
+//   })
 
-  if (!spotDeets) {
-    res.status(404)
-    return res.json({
-      "message": "Spot couldn't be found",
-      "statusCode": 404
-    })
-  }
+//   if (!spotDeets) {
+//     res.status(404)
+//     return res.json({
+//       "message": "Spot couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
 
-  const spotDeetsOb = spotDeets.dataValues
-  const ownerIdDeet = spotDeetsOb.ownerId
+//   const spotDeetsOb = spotDeets.dataValues
+//   const ownerIdDeet = spotDeetsOb.ownerId
 
-  //create all spot images
-  const deetSpotImages = await SpotImage.findAll({
-    where: {
-      spotId: spotDetailId
-    },
-    attributes: {
-      exclude: [ 'createdAt', 'updatedAt', 'spotId']
-    }
-  })
+//   //create all spot images
+//   const deetSpotImages = await SpotImage.findAll({
+//     where: {
+//       spotId: spotDetailId
+//     },
+//     attributes: {
+//       exclude: [ 'createdAt', 'updatedAt', 'spotId']
+//     }
+//   })
 
-  let imgArr = []
-  deetSpotImages.forEach(imageOb => {
-    imgArr.push(imageOb.toJSON())
+//   let imgArr = []
+//   deetSpotImages.forEach(imageOb => {
+//     imgArr.push(imageOb.toJSON())
 
-  })
+//   })
 
 
-  const spotReviews = await Review.findAll({
-    where: {
-      spotId: req.params.spotId
-    }
-  })
-   let deetReviewsArr = [spotReviews[0].dataValues]
-  console.log(spotReviews)
-  let deetReviewsArrNum = deetReviewsArr.length
-  let starCount = 0
-  for (let i = 0; i < deetReviewsArr.length; i++) {
-    let reviewOb = deetReviewsArr[i]
-    let starRate = reviewOb.stars
-    starCount += starRate
-  }
-  let avgReview = starCount/deetReviewsArrNum
+//   const spotReviews = await Review.findAll({
+//     where: {
+//       spotId: req.params.spotId
+//     }
+//   })
+//    let deetReviewsArr = [spotReviews[0].dataValues]
+//   console.log(spotReviews)
+//   let deetReviewsArrNum = deetReviewsArr.length
+//   let starCount = 0
+//   for (let i = 0; i < deetReviewsArr.length; i++) {
+//     let reviewOb = deetReviewsArr[i]
+//     let starRate = reviewOb.stars
+//     starCount += starRate
+//   }
+//   let avgReview = starCount/deetReviewsArrNum
 
-  const spotOwner = await User.findOne({
-    where: {
-      id: ownerIdDeet
-    },
-    attributes: {
-      exclude: ['username']
-    }
-  })
-  spotDeetsOb.numReviews = deetReviewsArrNum
-  spotDeetsOb.avgStarRating = avgReview.toFixed(1)
-  spotDeetsOb.SpotImages = imgArr
-  spotDeetsOb.Owner = spotOwner
-  console.log(spotDeetOb)
-  res.json(spotDeetsOb)
-})
-
+//   const spotOwner = await User.findOne({
+//     where: {
+//       id: ownerIdDeet
+//     },
+//     attributes: {
+//       exclude: ['username']
+//     }
+//   })
+//   spotDeetsOb.numReviews = deetReviewsArrNum
+//   spotDeetsOb.avgStarRating = avgReview.toFixed(1)
+//   spotDeetsOb.SpotImages = imgArr
+//   spotDeetsOb.Owner = spotOwner
+//   console.log(spotDeetOb)
+//   res.json(spotDeetsOb)
+// })
+//
+//
+//
+//
+//
 
 
 
@@ -407,8 +411,6 @@ reviewsArr.forEach(ele => {
   })
 res.status(201)
 res.json(newReview)
-
-
 
 })
 
