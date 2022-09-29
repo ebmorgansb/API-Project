@@ -58,13 +58,6 @@ res.json(imgReturn)
 // })
 
 
-//get reviews by spotId
-// router.get('/current', async (req, res) => {
-
-
-
-// })
-
 
 
 module.exports = router;

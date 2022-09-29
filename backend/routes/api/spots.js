@@ -417,7 +417,29 @@ res.json(newReview)
 
 
 
+//get reviews by spotId
+//
+//
+router.get('/:spotId/reviews', async (req, res) => {
+  const spotId = req.params.spotId
+  const allReviews = await Review.findAll({
 
+      where: {
+          spotId: spotId
+      },
+      include: [{model: ReviewImage, attributes: ['url', 'id']}, {model: User,  attributes: ['id', 'firstName', 'lastName']}],
+
+  })
+  let reviewArr = []
+  for (let i = 0; i < allReviews.length; i++) {
+    let review = allReviews[i].toJSON()
+    delete review.ReviewImages.createdAt
+    reviewArr.push(review)
+  }
+
+  const finalAllReview = {Reviews: allReviews}
+  res.json(finalAllReview)
+})
 
 
 module.exports = router;
