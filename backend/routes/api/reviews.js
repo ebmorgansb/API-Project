@@ -64,7 +64,6 @@ router.get('/current', async (req, res) => {
         let review = allReviews[i].toJSON()
         reviewArr.push(review)
         let spotId = review.Spot.id
-        console.log(review)
         const spotImgs = await SpotImage.findAll({
             where: {
                 spotId: spotId
@@ -78,6 +77,53 @@ router.get('/current', async (req, res) => {
     }
     const finalReviews = {Reviews: reviewArr}
     res.json(finalReviews)
+
+})
+
+
+
+//
+//
+//
+//
+//edit a review
+
+//Validations for create a review for a spot
+const validateReview = [
+    check('review')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Review text is required"),
+    check('stars')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .isInt({ min: 1, max: 5 })
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors
+  ];
+
+
+router.put('/:reviewId', validateReview, async (req, res) => {
+const {reviewId} = req.params
+const {review, stars} = req.body
+
+const editReview = await Review.findByPk(reviewId)
+
+if (!editReview) {
+    res.status(404)
+    res.json({
+        "message": "Review couldn't be found",
+        "statusCode": 404
+      })
+}
+
+    editReview.update({
+    review,
+    stars
+  })
+
+
+res.json(editReview)
 
 })
 
