@@ -430,6 +430,19 @@ router.get('/:spotId/reviews', async (req, res) => {
       include: [{model: ReviewImage, attributes: ['url', 'id']}, {model: User,  attributes: ['id', 'firstName', 'lastName']}],
 
   })
+
+  const spot = await Spot.findByPk(spotId)
+
+
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+
   let reviewArr = []
   for (let i = 0; i < allReviews.length; i++) {
     let review = allReviews[i].toJSON()

@@ -42,20 +42,44 @@ res.json(imgReturn)
 
 
 
-//
-//
-//get reviews of current user
-//
-// router.get('/current', async (req, res) => {
-//     const allReviews = await Review.findAll({
-//         where: {
-//             userId: req.user.id
-//         },
-//         include: [{model: Spot}, {model:ReviewImage}, {model:User}]
-//     })
-//     res.json(allReviews)
 
-// })
+
+//get reviews of current user
+///
+//
+
+router.get('/current', async (req, res) => {
+    let currUser = req.user.id
+    const allReviews = await Review.findAll({
+        where: {
+            userId: req.user.id
+        },
+        include: [{model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']},
+        {model:ReviewImage, attributes: ['id', 'url']},
+        {model:User, attributes: ['id', 'firstName', 'lastName']}]
+    })
+    let reviewArr = []
+    for (let i = 0; i < allReviews.length; i++) {
+
+        let review = allReviews[i].toJSON()
+        reviewArr.push(review)
+        let spotId = review.Spot.id
+        console.log(review)
+        const spotImgs = await SpotImage.findAll({
+            where: {
+                spotId: spotId
+            }
+        })
+        for (let i = 0; i < spotImgs.length; i++) {
+            let spotImg = spotImgs[i].toJSON()
+            let url = spotImg.url
+            review.Spot.previewImage = url
+        }
+    }
+    const finalReviews = {Reviews: reviewArr}
+    res.json(finalReviews)
+
+})
 
 
 
