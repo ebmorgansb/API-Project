@@ -288,22 +288,6 @@ router.get('/current', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //edit a spot
 //
 //
@@ -453,6 +437,34 @@ router.get('/:spotId/reviews', async (req, res) => {
   const finalAllReview = {Reviews: allReviews}
   res.json(finalAllReview)
 })
+
+
+router.post('/:spotId/bookings', async (req, res) => {
+  const currUser = req.user.id
+  const {startDate, endDate} = req.body
+  const spotId = req.params.spotId
+
+  const spotty = await Spot.findByPk(spotId)
+
+if (!spotty) {
+  res.status(404)
+  res.json({
+    "message": "Spot couldn't be found",
+    "statusCode": 404
+  })
+}
+  const newBooking = await Booking.create({
+    spotId: spotId,
+    userId: currUser,
+    startDate,
+    endDate,
+
+  })
+
+  res.json(newBooking)
+
+})
+
 
 
 module.exports = router;
