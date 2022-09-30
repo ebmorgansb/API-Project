@@ -458,12 +458,77 @@ if (!spotty) {
     userId: currUser,
     startDate,
     endDate,
+  })
+  res.json(newBooking)
+})
 
+
+//get bookings for a spot by id
+router.get('/:spotId/bookings', async (req, res) => {
+  const spotId = req.params.spotId
+  const currUser = req.user.id
+  const spot = await Spot.findByPk(spotId)
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+  const spotUser = spot.toJSON().ownerId
+
+
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+if (currUser === spotUser) {
+  let arr1 = []
+  const bookingsAndUsers = await Booking.findAll({
+    where: {
+      spotId: spotId
+    },
+    include: [{model: User, attributes: ['id', 'firstName', 'lastName']}]
   })
 
-  res.json(newBooking)
+  for (let i = 0; i < bookingsAndUsers.length; i++) {
+    let bookingsAndUser = bookingsAndUsers[i].toJSON()
+    arr1.push(bookingsAndUser)
+  }
+  const finalArr = {Bookings: arr1}
+
+  res.json(finalArr)
+}
+
+if (currUser !== spotUser) {
+
+  const bookings = await Booking.findAll({
+    where: {
+      spotId: spotId
+    },
+    attributes: ['spotId', 'startDate', 'endDate']
+})
+let arr2 = []
+for (let i = 0; i < bookings.length; i++) {
+  let booking = bookings[i].toJSON()
+  arr2.push(booking)
+}
+
+const final2 = {'Bookings': arr2}
+res.json(final2)
+
+}
 
 })
+
+
+
+
+
 
 
 
