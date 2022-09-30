@@ -208,12 +208,40 @@ router.get('/current', async (req, res) => {
 // get details of a spot by an id
 //
 //
-// router.get('/:spotId', async (req, res) => {
+router.get('/:spotId', async (req, res) => {
 
+const spotId = req.params.spotId
 
+const allReviews = await Review.findAll({
+  where: {
+    spotId: spotId
+  }
+})
+const reviewsArr = []
+let starCount = 0
+for (let i = 0; i < allReviews.length; i++) {
+  let review = allReviews[i].toJSON()
+  let stars = review.stars
+  starCount += stars
+  reviewsArr.push(review)
+}
 
-
-// })
+const theSpot = await Spot.findOne({
+  where: {
+    id: spotId
+  },
+  include: [{model: User, attributes: ['id', 'firstName', 'lastName']}, {model: SpotImage, attributes: ['id', 'url', 'preview']}]
+})
+const theRealSpot = theSpot.toJSON()
+let numReviewz = reviewsArr.length
+if(numReviewz) {
+  let avgRating = starCount/numReviewz.toFixed(1)
+  theRealSpot.numReviews = numReviewz
+  theRealSpot.avgStarRating = avgRating
+}
+else{}
+res.json(theRealSpot)
+})
 
 
 
