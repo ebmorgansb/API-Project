@@ -134,7 +134,11 @@ res.json(editReview)
 //
 router.delete('/:reviewId', async (req,res) => {
     const reviewId = req.params.reviewId
-    const review = await Booking.findByPk(reviewId)
+    const review = await Review.findOne({
+        where: {
+            id: reviewId
+        }
+    })
     if (!review) {
         res.status(404)
         res.json({

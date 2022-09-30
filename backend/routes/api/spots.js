@@ -330,9 +330,7 @@ router.post('/:spotId/reviews', async (req, res) => {
     },
     include: [{model: Review}]
   })
-
   if (!userSpot.length) {
-    console.log('test')
     res.status(404)
     return res.json({
       "message": "Spot couldn't be found",
@@ -344,31 +342,32 @@ router.post('/:spotId/reviews', async (req, res) => {
     let spot = userSpot[i].toJSON()
     spotsArr.push(spot)
   }
-  // console.log(spotsArr)
-  const spotsArrIndex = spotsArr[0]
-  const reviewsArr = spotsArrIndex.Reviews
-
-
-reviewsArr.forEach(ele => {
-  if (ele.userId === req.user.id) {
-      res.status(403)
-      return res.json({
+  const reviewz = spotsArr[0].Reviews
+    for (let i = 0; i < reviewz.length; i++) {
+      let review = reviewz[i]
+      if (review.userId === currUser) {
+        res.status(404)
+        res.json({
           "message": "User already has a review for this spot",
           "statusCode": 403
         })
-  }
-});
+      }
+    }
+
+
+      const newReview = await Review.create({
+        spotId,
+        userId: currUser,
+        review,
+        stars
+      })
+    res.status(201)
+    res.json(newReview)
 
 
 
-  const newReview = await Review.create({
-    spotId,
-    userId: currUser,
-    review,
-    stars
-  })
-res.status(201)
-res.json(newReview)
+
+
 
 })
 
