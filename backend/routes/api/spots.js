@@ -152,7 +152,8 @@ assocSpot.previewImage = spotImg.url
 
 // get all spots owned by current user
 //
-//currSpots is an empty array even though I can see in the database there are associated spots to the current user id
+//
+//
 router.get('/current', async (req, res) => {
 
   const currUserId = req.user.id;
@@ -209,78 +210,15 @@ router.get('/current', async (req, res) => {
 //
 // router.get('/:spotId', async (req, res) => {
 
-//   const spotDetailId = req.params.spotId
-//   const spotDeets = await Spot.findOne({
-//     where: {
-//       id: spotDetailId
-//     }
-//     //  include: [{model: SpotImage}],
-//   })
-
-//   if (!spotDeets) {
-//     res.status(404)
-//     return res.json({
-//       "message": "Spot couldn't be found",
-//       "statusCode": 404
-//     })
-//   }
-
-//   const spotDeetsOb = spotDeets.dataValues
-//   const ownerIdDeet = spotDeetsOb.ownerId
-
-//   //create all spot images
-//   const deetSpotImages = await SpotImage.findAll({
-//     where: {
-//       spotId: spotDetailId
-//     },
-//     attributes: {
-//       exclude: [ 'createdAt', 'updatedAt', 'spotId']
-//     }
-//   })
-
-//   let imgArr = []
-//   deetSpotImages.forEach(imageOb => {
-//     imgArr.push(imageOb.toJSON())
-
-//   })
 
 
-//   const spotReviews = await Review.findAll({
-//     where: {
-//       spotId: req.params.spotId
-//     }
-//   })
-//    let deetReviewsArr = [spotReviews[0].dataValues]
-//   console.log(spotReviews)
-//   let deetReviewsArrNum = deetReviewsArr.length
-//   let starCount = 0
-//   for (let i = 0; i < deetReviewsArr.length; i++) {
-//     let reviewOb = deetReviewsArr[i]
-//     let starRate = reviewOb.stars
-//     starCount += starRate
-//   }
-//   let avgReview = starCount/deetReviewsArrNum
 
-//   const spotOwner = await User.findOne({
-//     where: {
-//       id: ownerIdDeet
-//     },
-//     attributes: {
-//       exclude: ['username']
-//     }
-//   })
-//   spotDeetsOb.numReviews = deetReviewsArrNum
-//   spotDeetsOb.avgStarRating = avgReview.toFixed(1)
-//   spotDeetsOb.SpotImages = imgArr
-//   spotDeetsOb.Owner = spotOwner
-//   console.log(spotDeetOb)
-//   res.json(spotDeetsOb)
 // })
-//
-//
-//
-//
-//
+
+
+
+
+
 
 
 
@@ -342,7 +280,7 @@ handleValidationErrors
 ];
 
 
-//create a review for a spot
+//create a review for a spot baed on the Spot's id
 //
 //
 router.post('/:spotId/reviews', async (req, res) => {
@@ -463,7 +401,10 @@ if (!spotty) {
 })
 
 
-//get bookings for a spot by id
+//get all bookings for a spot baed on the Spot's id
+//
+//
+//
 router.get('/:spotId/bookings', async (req, res) => {
   const spotId = req.params.spotId
   const currUser = req.user.id
@@ -526,7 +467,57 @@ res.json(final2)
 })
 
 
+//Delete a spot
+//
+//
+//
+router.delete('/:spotId', async (req,res) => {
+  const spotId = req.params.spotId
+  const spot = await Spot.findByPk(spotId)
+  if (!spot) {
+      res.status(404)
+      res.json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
+        })
+  }
+  await spot.destroy()
 
+  res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+    })
+})
+
+
+//
+//
+//
+//
+//Create a Booking from a Spot based on the Spot's id
+router.post('/:spotId/bookings', async (req,res) => {
+  const currUser = req.user.id
+  const spotId = req.params.spotId
+  const {startDate, endDate} = req.body
+  const spot = await Spot.findByPk(spotId)
+  if (!spot) {
+    res.status(404)
+    res.json({
+        "message": "Spot Image couldn't be found",
+        "statusCode": 404
+      })
+    }
+  const newSpot = await Booking.create({
+    startDate,
+    endDate,
+    spotId: spotId,
+    userId: currUser
+  })
+// console.log(newSpot, '======')
+res.json(newSpot)
+//HOW TO DO EXISTING BOOKING CHECK
+//NEEDED
+})
 
 
 

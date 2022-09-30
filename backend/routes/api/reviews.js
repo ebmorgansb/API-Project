@@ -128,6 +128,32 @@ res.json(editReview)
 })
 
 
+//Delete a review
+//
+//
+//
+router.delete('/:reviewId', async (req,res) => {
+    const reviewId = req.params.reviewId
+    const review = await Booking.findByPk(reviewId)
+    if (!review) {
+        res.status(404)
+        res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+          })
+    }
+    await review.destroy()
+
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+      })
+})
+
+
+
+
+
 
 
 module.exports = router;
