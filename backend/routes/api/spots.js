@@ -232,6 +232,14 @@ const theSpot = await Spot.findOne({
   },
   include: [{model: User, attributes: ['id', 'firstName', 'lastName']}, {model: SpotImage, attributes: ['id', 'url', 'preview']}]
 })
+
+if (!theSpot) {
+  res.status(404)
+  res.json({
+    "message": "Spot couldn't be found",
+    "statusCode": 404
+  })
+}
 const theRealSpot = theSpot.toJSON()
 let numReviewz = reviewsArr.length
 if(numReviewz) {
