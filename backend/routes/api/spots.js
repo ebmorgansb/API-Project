@@ -412,29 +412,6 @@ router.get('/:spotId/reviews', async (req, res) => {
 })
 
 
-router.post('/:spotId/bookings', async (req, res) => {
-  const currUser = req.user.id
-  const {startDate, endDate} = req.body
-  const spotId = req.params.spotId
-
-  const spotty = await Spot.findByPk(spotId)
-
-if (!spotty) {
-  res.status(404)
-  res.json({
-    "message": "Spot couldn't be found",
-    "statusCode": 404
-  })
-}
-  const newBooking = await Booking.create({
-    spotId: spotId,
-    userId: currUser,
-    startDate,
-    endDate,
-  })
-  res.json(newBooking)
-})
-
 
 //get all bookings for a spot baed on the Spot's id
 //
@@ -511,50 +488,80 @@ router.delete('/:spotId', async (req,res) => {
   const spot = await Spot.findByPk(spotId)
   if (!spot) {
       res.status(404)
-      res.json({
+      return res.json({
           "message": "Spot couldn't be found",
           "statusCode": 404
         })
   }
   await spot.destroy()
 
-  res.json({
+  return res.json({
       "message": "Successfully deleted",
       "statusCode": 200
     })
 })
 
 
-//
-//
-//
-//
-//Create a Booking from a Spot based on the Spot's id
-router.post('/:spotId/bookings', async (req,res) => {
-  const currUser = req.user.id
+
+// Create a Booking from a Spot based on the Spot's id
+
+
+
+router.post('/:spotId/bookings', async (req, res) => {
+  const {startDate, endDate} = req.body;
   const spotId = req.params.spotId
-  const {startDate, endDate} = req.body
-  const spot = await Spot.findByPk(spotId)
-  if (!spot) {
-    res.status(404)
-    res.json({
-        "message": "Spot Image couldn't be found",
-        "statusCode": 404
+
+  const newEndDate = new Date(endDate)
+  const newStartDate = new Date(startDate)
+
+  const spotty = await Spot.findAll({
+      include: [{model: Booking}],
+      where: {id: spotId}
+  });
+
+  if (!spotty.length) {
+      res.status(404)
+      return res.json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
       })
-    }
-  const newSpot = await Booking.create({
-    startDate,
-    endDate,
-    spotId: spotId,
-    userId: currUser
-  })
-// console.log(newSpot, '======')
-res.json(newSpot)
-//HOW TO DO EXISTING BOOKING CHECK
-//NEEDED
+  }
+
+  const newArr = [];
+  spotty.forEach(spotz => {
+      newArr.push(spotz.toJSON())
+  });
+  const prevBookings = newArr[0].Bookings
+
+  for (let i = 0; i < prevBookings.length; i++) {
+      const bookz = prevBookings[i];
+      if (((newStartDate >= new Date(bookz.startDate) && newStartDate <= new Date(bookz.endDate)) || (newEndDate <= new Date(bookz.endDate) && newEndDate >= new Date(bookz.startDate))) || (newStartDate <= new Date(bookz.startDate) && newEndDate >= new Date(bookz.endDate))){
+          res.status(404);
+          return res.json({
+              "startDate": "Start date conflicts with an existing booking",
+              "endDate": "End date conflicts with an existing booking"
+            })
+      };
+  };
+
+  if (newStartDate >= newEndDate){
+      res.status(400);
+      return res.json({
+          "error": "endDate cannot be on or before startDate",
+          "statusCode": 400
+      });
+  };
+  const newBooking = await Booking.create({
+      spotId: req.params.spotId,
+      userId: req.user.id,
+      startDate,
+      endDate
+  });
+
+ return res.json(newBooking)
+
+
 })
-
-
 
 
 

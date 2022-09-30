@@ -44,7 +44,7 @@ router.get('/current', async (req,res) => {
 }
     const final = {Bookings: bookingsArr}
     // console.log(final)
-    res.json(final)
+    return res.json(final)
 })
 
 
