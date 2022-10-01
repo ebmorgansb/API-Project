@@ -17,7 +17,7 @@ module.exports = {
         },
         {
         ownerId: 2,
-        address: "aaa123 Disney Lane",
+        address: "aaa123 Disney Lane2",
         city: "San Francisco",
         state: "California",
         country: "United States of America",
@@ -29,7 +29,7 @@ module.exports = {
       },
       {
       ownerId: 3,
-      address: "aaa123 Disney Lane",
+      address: "aaa123 Disney Lane3",
       city: "San Francisco",
       state: "California",
       country: "United States of America",

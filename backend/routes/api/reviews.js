@@ -55,8 +55,7 @@ router.get('/current', async (req, res) => {
             userId: req.user.id
         },
         include: [{model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']},
-        {model:ReviewImage, attributes: ['id', 'url']},
-        {model:User, attributes: ['id', 'firstName', 'lastName']}]
+        {model:ReviewImage, attributes: ['id', 'url']}]
     })
     let reviewArr = []
     for (let i = 0; i < allReviews.length; i++) {

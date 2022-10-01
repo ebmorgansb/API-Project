@@ -20,7 +20,7 @@ router.get('/current', async (req,res) => {
             userId: currUser
         },
         attribute: ['userId', 'startDate', 'endDate', 'createdAt', 'updatedAt'],
-        include: [{model: Spot}]
+        include: [{model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']}]
     })
     let bookingsArr = []
     for (let i = 0; i < bookings.length; i++) {

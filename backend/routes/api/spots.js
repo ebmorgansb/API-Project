@@ -12,8 +12,25 @@ const { ExclusionConstraintError } = require('sequelize');
 //Get All Spots
 //
 router.get('/', async (req, res) => {
+
+      //pagination
+      let { page, size} = req.query;
+      const pagination = {};
+      if (!page) {
+          page = 1
+      }
+      if (!size) {
+          size = 20
+      };
+
+      if (page >= 1 && size >= 1) {
+          pagination.offset = size * (page - 1);
+          pagination.limit = size
+      }
+
     let allSpots = await Spot.findAll({
-       include: [{model: Review}, {model: SpotImage}]
+       include: [{model: Review}, {model: SpotImage}],
+       ...pagination
     })
 
     let spotArr = []
@@ -35,43 +52,18 @@ router.get('/', async (req, res) => {
       }
       delete spotArr[i].SpotImages
       let avgRating = counter/reviews.length
+      if (avgRating == 'NaN') {
+
+        spot.avgRating = '0.0'
+    }
       spot.avgRating = avgRating.toFixed(2)
       delete spotArr[i].Reviews
 
     }
-
-
-
-
-    //pagination
-    let {page, size} = req.query
-    if (page < 1 || page > 10 ) {
-      page = 1
-    }
-    if (!size || size < 1 || size > 20) {
-      size = 20
-    }
-
-    // page = parseInt(page)
-    // size = parseInt(size)
-
-    // const pagination = {}
-    // if (page >= 1 && size >= 1) {
-    //   pagination.limit = size
-    //   pagination.offset = size * (page-1)
-
-    // }
-    if (page && size) {
-      let finalAllSpots = {
-        Spots: spotArr,
-        page: page,
-        size: size
-      }
-      res.json(finalAllSpots)
-    }
     let finalAllSpots = {
       Spots: spotArr
     }
+
   res.json(finalAllSpots);
 });
 
@@ -265,6 +257,15 @@ const theSpot = await Spot.findOne({
   },
   include: [{model: SpotImage, attributes: ['id', 'url', 'preview']}]
 })
+
+
+if (theSpot === null) {
+  res.status(404)
+  return res.json({
+    "message": "Spot couldn't be found",
+    "statusCode": 404
+  })
+}
 const assocUser = await User.findOne({
   where: {
     id: spotId
@@ -272,14 +273,7 @@ const assocUser = await User.findOne({
 })
 const newUser = assocUser.toJSON()
 delete newUser.username
-console.log(newUser.id)
-if (!theSpot) {
-  res.status(404)
-  res.json({
-    "message": "Spot couldn't be found",
-    "statusCode": 404
-  })
-}
+
 const theRealSpot = theSpot.toJSON()
 let numReviewz = reviewsArr.length
 // if(numReviewz) {
@@ -387,7 +381,7 @@ router.post('/:spotId/reviews', async (req, res) => {
     for (let i = 0; i < reviewz.length; i++) {
       let review = reviewz[i]
       if (review.userId === currUser) {
-        res.status(404)
+        res.status(403)
         res.json({
           "message": "User already has a review for this spot",
           "statusCode": 403
@@ -454,10 +448,10 @@ router.get('/:spotId/reviews', async (req, res) => {
 
 
 
-//get all bookings for a spot baed on the Spot's id
-//
-//
-//
+// get all bookings for a spot baed on the Spot's id
+
+
+
 router.get('/:spotId/bookings', async (req, res) => {
   const spotId = req.params.spotId
   const currUser = req.user.id
@@ -493,6 +487,7 @@ if (currUser === spotUser) {
     let bookingsAndUser = bookingsAndUsers[i].toJSON()
     arr1.push(bookingsAndUser)
   }
+  console.log(arr1)
   const finalArr = {Bookings: arr1}
 
   res.json(finalArr)
@@ -577,7 +572,7 @@ router.post('/:spotId/bookings', async (req, res) => {
   for (let i = 0; i < prevBookings.length; i++) {
       const bookz = prevBookings[i];
       if (((newStartDate >= new Date(bookz.startDate) && newStartDate <= new Date(bookz.endDate)) || (newEndDate <= new Date(bookz.endDate) && newEndDate >= new Date(bookz.startDate))) || (newStartDate <= new Date(bookz.startDate) && newEndDate >= new Date(bookz.endDate))){
-          res.status(404);
+          res.status(403);
           return res.json({
               "startDate": "Start date conflicts with an existing booking",
               "endDate": "End date conflicts with an existing booking"

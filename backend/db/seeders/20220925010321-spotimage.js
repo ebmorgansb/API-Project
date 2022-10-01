@@ -9,12 +9,12 @@ module.exports = {
        preview: true
       },
       {
-        spotId: 1,
+        spotId: 2,
         url: "image2.url",
         preview: true
        },
        {
-        spotId: 1,
+        spotId: 3,
         url: "image3.url",
         preview: true
        }
