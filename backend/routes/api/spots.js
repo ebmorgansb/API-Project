@@ -224,7 +224,7 @@ router.get('/current', async (req, res) => {
         spot.previewImage = url
       }
       let avgRating = counter/reviews.length.toFixed(1)
-      spot.avgStarRating = avgRating
+      spot.avgRating = avgRating
       delete spot.Reviews
       delete spot.SpotImages
     }
@@ -263,9 +263,16 @@ const theSpot = await Spot.findOne({
   where: {
     id: spotId
   },
-  include: [{model: User, attributes: ['id', 'firstName', 'lastName']}, {model: SpotImage, attributes: ['id', 'url', 'preview']}]
+  include: [{model: SpotImage, attributes: ['id', 'url', 'preview']}]
 })
-
+const assocUser = await User.findOne({
+  where: {
+    id: spotId
+  }
+})
+const newUser = assocUser.toJSON()
+delete newUser.username
+console.log(newUser.id)
 if (!theSpot) {
   res.status(404)
   res.json({
@@ -275,12 +282,13 @@ if (!theSpot) {
 }
 const theRealSpot = theSpot.toJSON()
 let numReviewz = reviewsArr.length
-if(numReviewz) {
+// if(numReviewz) {
   let avgRating = starCount/numReviewz.toFixed(1)
   theRealSpot.numReviews = numReviewz
   theRealSpot.avgStarRating = avgRating
-}
-else{}
+  theRealSpot.Owner = newUser
+// }
+// else{}
 res.json(theRealSpot)
 })
 
