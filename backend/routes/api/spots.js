@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
     let allSpots = await Spot.findAll({
        include: [{model: Review}, {model: SpotImage}]
     })
+
     let spotArr = []
     for (let i = 0; i <allSpots.length; i++) {
       let counter = 0
@@ -38,7 +39,39 @@ router.get('/', async (req, res) => {
       delete spotArr[i].Reviews
 
     }
-    const finalAllSpots = {Spots: spotArr}
+
+
+
+
+    //pagination
+    let {page, size} = req.query
+    if (page < 1 || page > 10 ) {
+      page = 1
+    }
+    if (!size || size < 1 || size > 20) {
+      size = 20
+    }
+
+    // page = parseInt(page)
+    // size = parseInt(size)
+
+    // const pagination = {}
+    // if (page >= 1 && size >= 1) {
+    //   pagination.limit = size
+    //   pagination.offset = size * (page-1)
+
+    // }
+    if (page && size) {
+      let finalAllSpots = {
+        Spots: spotArr,
+        page: page,
+        size: size
+      }
+      res.json(finalAllSpots)
+    }
+    let finalAllSpots = {
+      Spots: spotArr
+    }
   res.json(finalAllSpots);
 });
 

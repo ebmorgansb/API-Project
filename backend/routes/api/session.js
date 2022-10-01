@@ -35,9 +35,7 @@ router.post(
     '/', validateLogin,
     async (req, res, next) => {
       const { credential, password } = req.body;
-
       const user = await User.login({ credential, password });
-
       if (!user) {
         const err = new Error('Login failed');
         err.status = 401;
@@ -45,13 +43,27 @@ router.post(
         err.errors = ['The provided credentials were invalid.'];
         return next(err);
       }
+      const userId = user.toJSON().id
+      const tokey = await setTokenCookie(res, user);
+      const uzer = await User.findOne({
+        where: {
+          id: userId
+        }
+      })
+      const finalUzer = uzer.toJSON()
+      const userRes = {
+        id: finalUzer.id,
+        email: credential,
+        firstName: finalUzer.firstName,
+        lastName: finalUzer.lastName,
+        username: finalUzer.username,
+        token: tokey
+      }
 
-      await setTokenCookie(res, user);
-      const uzer = user.user
-      return res.json({
-        uzer
-      });
+
+      return res.json(userRes);
     }
+
   );
 
 // Log out
@@ -69,10 +81,11 @@ router.get(
   restoreUser,
   (req, res) => {
     const { user } = req;
+    console.log(user)
     if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
+      return res.json(
+        user.toSafeObject()
+      );
     } else return res.json({});
   }
 );
