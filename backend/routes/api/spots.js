@@ -384,7 +384,7 @@ router.post('/:spotId/reviews', async (req, res) => {
       let review = reviewz[i]
       if (review.userId === currUser) {
         res.status(403)
-        res.json({
+        return res.json({
           "message": "User already has a review for this spot",
           "statusCode": 403
         })
@@ -399,7 +399,7 @@ router.post('/:spotId/reviews', async (req, res) => {
         stars
       })
     res.status(201)
-    res.json(newReview)
+    return res.json(newReview)
 
 
 

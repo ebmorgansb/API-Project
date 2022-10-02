@@ -55,12 +55,13 @@ router.get('/current', async (req, res) => {
             userId: req.user.id
         },
         include: [{model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']},
-        {model:ReviewImage, attributes: ['id', 'url']}]
+        {model:ReviewImage, attributes: ['id', 'url']}, {model:User, attributes: ['id', 'firstName', 'lastName']}]
     })
     let reviewArr = []
     for (let i = 0; i < allReviews.length; i++) {
 
         let review = allReviews[i].toJSON()
+        console.log(review)
         reviewArr.push(review)
         let spotId = review.Spot.id
         const spotImgs = await SpotImage.findAll({
