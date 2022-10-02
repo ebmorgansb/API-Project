@@ -61,7 +61,9 @@ router.get('/', async (req, res) => {
 
     }
     let finalAllSpots = {
-      Spots: spotArr
+      Spots: spotArr,
+      page,
+      size
     }
 
   res.json(finalAllSpots);
