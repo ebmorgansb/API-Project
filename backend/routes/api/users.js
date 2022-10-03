@@ -50,9 +50,9 @@ router.post(
       const id2 = user.id
       let tokey = await setTokenCookie(res, user);
 
+      console.log(user)
 
 
-      
       return res.json({
 
           id: id2,
