@@ -1,0 +1,15 @@
+.spotCardUpperText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spotCardImg {
+    height: 100%;
+    width: 100%;
+}
+
+.spotCard {
+    height: 8%;
+    width: 12%;
+}
