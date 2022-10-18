@@ -16,6 +16,7 @@ export const receiveSpots = (spots) => {
 };
 
 
+<<<<<<< HEAD
 export const actionDeleteSpot = (id) => ({
   type: DELETE,
   id
@@ -25,16 +26,37 @@ export const actionCreateSpot = (spot) => ({
   type: CREATE,
   spot
 })
+=======
+export const actionDeleteSpot = (id) => {
+  return {
+  type: DELETE,
+  id
+}
+}
+export const actionCreateSpot = (spot) => {
+  return {
+  type: CREATE,
+  spot
+}}
+>>>>>>> main
 
 //Thunk goes here to grab spots data from db, then it
 //gets normalized and pushed to reducer
 export const fetchSpots = () => async (dispatch) => {
   const res = await fetch(`/api/spots`);
+<<<<<<< HEAD
   if (res.ok) {
     const data = await res.json();
     console.log(data)
     dispatch(receiveSpots(data.spots));
   }
+=======
+  // if (res.ok) {
+    const data = await res.json();
+    // console.log(data)
+    dispatch(receiveSpots(data.Spots));
+  // }
+>>>>>>> main
 };
 
 
@@ -58,6 +80,12 @@ export default function spotsReducer(state = {}, action){
     case DELETE:
       delete newState[action.spots.id]
       return newState
+<<<<<<< HEAD
+=======
+      case RECEIVE:
+        const testState = {...newState, ...action.spots}
+        return testState
+>>>>>>> main
     default:
       return state
   }
