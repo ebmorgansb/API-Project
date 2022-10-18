@@ -5,11 +5,11 @@
 }
 
 .spotCardImg {
-    height: 100%;
-    width: 100%;
+    height: 10%;
+    width: 10%;
 }
 
 .spotCard {
-    height: 8%;
-    width: 12%;
+    height: 50%;
+    width: 50%;
 }

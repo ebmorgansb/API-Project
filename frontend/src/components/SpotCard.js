@@ -36,11 +36,16 @@ function SpotCard () {
   return (
     <div>
     {spots.map(spot => (
-      <div>
-      <img key={spot.id} src={`${spot.previewImage}`}></img>
+      <div key={`a${spot.id}`} className='spotCard'>
+        <div key={`b${spot.id}`} className='spotCardUpperText'>
+          <div key={`c${spot.id}`}>{`${spot.city}, ${spot.state}`}</div>
+          <div key={`d${spot.id}`}>Star Rating</div>
+        </div>
+        <div key={`e${spot.id}`}>{`$${spot.price} per night`}</div>
+        <img key={spot.id} className='spotCardImg' src={`${spot.previewImage}`}></img>
       </div>
           ))}
-          </div>
+    </div>
   )
 }
 
