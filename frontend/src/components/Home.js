@@ -1,7 +1,8 @@
 import SpotCard from './SpotCard';
-import SpotImages from './SpotImages'
-
+import {useDispatch} from 'react-redux'
+import {fetchSpots} from '../store/spots'
 function Home () {
+
     return (
       <div>
         <SpotCard/>

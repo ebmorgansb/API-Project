@@ -111,10 +111,9 @@ const editReview = await Review.findByPk(reviewId)
 
 if (!editReview) {
     res.status(404)
-    res.json({
-        "message": "Review couldn't be found",
-        "statusCode": 404
-      })
+    res.json(
+        ["Review couldn't be found"]
+)
 }
 
     editReview.update({
