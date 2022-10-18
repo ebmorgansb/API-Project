@@ -5,7 +5,8 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import Home from './components/Home'
+import Home from './components/Home/Home'
+import OneSpot from './components/OneSpot/OneSpot'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,8 +22,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/'>
+          <Route path='/' exact>
             <Home/>
+          </Route>
+          <Route path='/spots/:spotId' exact>
+          <OneSpot/>
           </Route>
         </Switch>
       )}

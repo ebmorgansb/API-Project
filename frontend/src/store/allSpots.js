@@ -34,7 +34,7 @@ export const fetchSpots = () => async (dispatch) => {
   const res = await fetch(`/api/spots`);
   // if (res.ok) {
     const data = await res.json();
-    // console.log(data)
+    console.log('-------', data)
     dispatch(receiveSpots(data.Spots));
   // }
 };
