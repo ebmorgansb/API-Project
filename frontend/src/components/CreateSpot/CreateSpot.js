@@ -28,13 +28,12 @@ export default function CreateSpot() {
 
         let newSpot = dispatch(createSpot(payload))
         if (newSpot) {
-          history.push(`/spots/${newSpot.id}`);
+          history.push(`/spots`);
         }
 
     }
 
     return (
-    <button>
      <form onSubmit={handleSubmit}>
      <label>
         Address
@@ -97,8 +96,7 @@ export default function CreateSpot() {
           required
         />
         </label>
-        <button type="submit">Submit</button>
       </form>
-      </button>
+
     )
 }

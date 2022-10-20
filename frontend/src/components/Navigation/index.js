@@ -5,8 +5,15 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import CreateSpot from '../CreateSpot/CreateSpot';
+import {useHistory} from 'react-router-dom'
 
 function Navigation({ isLoaded }){
+
+  const history = useHistory()
+  function handleClick() {
+    history.push("/createSpot");
+  }
+
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
@@ -31,7 +38,7 @@ function Navigation({ isLoaded }){
         {isLoaded && sessionLinks}
       </li>
     </ul>
-    <CreateSpot/>
+    <button onClick={handleClick}>Become a Host</button>
     </div>
   );
 }
