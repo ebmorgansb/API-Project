@@ -1,20 +1,19 @@
 
 import './SpotCard.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {fetchSpots} from '../../store/allSpots'
+import {fetchSpots} from '../../store/spot'
 import {useEffect} from 'react'
-import {NavLink} from 'react'
-function SpotCard () {
+import {NavLink} from 'react-router-dom'
+export default function SpotCard () {
 
   const dispatch = useDispatch()
 
 
   let spots = []
-  const spotsObject = useSelector(state => state.allSpots)
-  console.log(spotsObject)
+  const spotsObject = useSelector(state => state.spot)
+  console.log('jbwbafewfbhBWFBFE', spotsObject)
   if (spotsObject) {
     spots = Object.values(spotsObject)
-    console.log('==============', spots)
   }
 
   useEffect(() => {
@@ -38,6 +37,4 @@ function SpotCard () {
           ))}
     </div>
   )
-}
-
-  export default SpotCard
+    }
