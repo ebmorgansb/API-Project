@@ -273,8 +273,9 @@ const assocUser = await User.findOne({
     id: spotId
   }
 })
-const newUser = assocUser.toJSON()
-delete newUser.username
+// console.log('DETAILS ROUTE', assocUser)
+// const newUser = assocUser.toJSON()
+// delete newUser.username
 
 const theRealSpot = theSpot.toJSON()
 let numReviewz = reviewsArr.length
@@ -282,7 +283,7 @@ let numReviewz = reviewsArr.length
   let avgRating = starCount/numReviewz.toFixed(1)
   theRealSpot.numReviews = numReviewz
   theRealSpot.avgStarRating = avgRating
-  theRealSpot.Owner = newUser
+  // theRealSpot.Owner = newUser
 // }
 // else{}
 res.json(theRealSpot)

@@ -3,6 +3,7 @@ import {csrfFetch} from './csrf'
 const GETONESPOT = 'spot/getSpot'
 const CREATEONESPOT = 'spot/createSpot'
 const RECEIVE = 'spots/getAllSpots'
+const DELETESPOT = 'spots/deleteSpot'
 
 export const receiveSpots = (spots) => {
   return {
@@ -26,7 +27,15 @@ export const createSpotAction = (spot) => {
   };
 };
 
-//ThunkaDunk for Creating a Spot
+//action creator for deleting one spot
+export const deleteSpotAction = (spotId) => {
+  return {
+    type: DELETESPOT,
+    spotId,
+  };
+};
+
+//Thunk for Creating a Spot
 export const createSpotThunk = (spot) => async (dispatch) => {
   const { address, city, state, country, name, description, price, previewImage } = spot;
   const response = await csrfFetch('/api/spots',
@@ -65,8 +74,8 @@ export const createSpotThunk = (spot) => async (dispatch) => {
 };
 
 
-//Thunk for all spots
-export const fetchSpots = () => async (dispatch) => {
+//Thunk for getting all spots
+export const getSpotsThunk = () => async (dispatch) => {
   const res = await fetch(`/api/spots`);
   // if (res.ok) {
     const data = await res.json();
@@ -76,12 +85,20 @@ export const fetchSpots = () => async (dispatch) => {
 };
 
 //Thunk for getting a spot
-export const fetchSpot = (spotId) => async (dispatch) => {
+export const getSpotThunk = (spotId) => async (dispatch) => {
   const res = await fetch(`/api/spots/${spotId}`);
   if (res.ok) {
     const spot = await res.json();
     console.log('Thunk spot data', spot)
     dispatch(receiveSpot(spot));
+  }
+};
+
+//Thunk for deleting a spot
+export const deleteSpotThunk = (spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}`, {method: 'DELETE'});
+  if (res.ok) {
+    dispatch(deleteSpotAction(spotId));
   }
 };
 
@@ -100,7 +117,10 @@ export default function spotReducer(state = {}, action){
         return newState
       case CREATEONESPOT:
         newState = {...state, ...action.spot}
-
+        return newState
+      case DELETESPOT:
+      newState = {...state}
+      delete newState.action.spotId
         return newState
     default:
       return state
