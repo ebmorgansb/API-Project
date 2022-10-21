@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { createSpot } from "../../store/spot"
 import { useHistory } from "react-router-dom"
+import { createSpotThunk } from "../../store/spot"
+
 export default function CreateSpot() {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -12,9 +14,12 @@ export default function CreateSpot() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [previewImage, setPreviewImage] = useState('')
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
 
         const payload = {
             address,
@@ -24,11 +29,12 @@ export default function CreateSpot() {
             name,
             description,
             price,
+            previewImage
         };
 
-        let newSpot = dispatch(createSpot(payload))
+        let newSpot = dispatch(createSpotThunk(payload))
         if (newSpot) {
-          history.push(`/spots`);
+          history.push(`/`);
         }
 
     }
@@ -96,6 +102,16 @@ export default function CreateSpot() {
           required
         />
         </label>
+        <label>
+        Preview Image
+        <input
+          type="text"
+          value={previewImage}
+          onChange={(e) => setPreviewImage(e.target.value)}
+          required
+        />
+        </label>
+        <button type='submit'>Submit</button>
       </form>
 
     )

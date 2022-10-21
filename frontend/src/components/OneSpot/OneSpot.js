@@ -10,9 +10,7 @@ export default function OneSpot() {
         const dispatch = useDispatch()
 
         const spotObject = useSelector(state => state.spot[spotId])
-        // const spotArray = Object.values(spotObject)
         console.log('Spot Object in OneSpot component',spotObject)
-        // console.log('oneSpotArray in component', spotArray)
         useEffect(() => {
           dispatch(fetchSpot(spotId))
         }, [dispatch, spotId])

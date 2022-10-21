@@ -27,8 +27,8 @@ export const createSpotAction = (spot) => {
 };
 
 //ThunkaDunk for Creating a Spot
-export const createSpot = (spot) => async (dispatch) => {
-  const { address, city, state, country, name, description, price } = spot;
+export const createSpotThunk = (spot) => async (dispatch) => {
+  const { address, city, state, country, name, description, price, previewImage } = spot;
   const response = await csrfFetch('/api/spots',
   {
  method: 'POST',
@@ -47,8 +47,20 @@ export const createSpot = (spot) => async (dispatch) => {
  if (response.ok) {
    const newSpot = await response.json();
    const spotId = newSpot.id
-   const images = await csrfFetch(`/${newSpot.id}/images`)
-   dispatch(createSpotAction(newSpot));
+   const image = await csrfFetch(`api/spots/${spotId}/images`, {
+   method: 'POST',
+    body: JSON.stringify({
+      url: previewImage,
+      preview: true
+    })
+   }
+   )
+   if (image.ok) {
+    const addImage = await image.json()
+    newSpot[previewImage] = addImage.url
+    console.log('newSpot with img', newSpot)
+    dispatch(createSpotAction(newSpot));
+   }
  }
 };
 
