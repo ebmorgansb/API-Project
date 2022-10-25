@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from './components/Home/Home'
 import OneSpot from './components/OneSpot/OneSpot'
 import CreateSpot from "./components/CreateSpot/CreateSpot";
+import EditSpot from "./components/EditSpot/EditSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/createSpot" exact>
             <CreateSpot/>
+          </Route>
+          <Route path="/editSpotty/:spotId" exact>
+            <EditSpot/>
           </Route>
           <Route path='/' exact>
             <Home/>

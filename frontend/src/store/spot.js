@@ -4,6 +4,7 @@ const GETONESPOT = 'spot/getSpot'
 const CREATEONESPOT = 'spot/createSpot'
 const RECEIVE = 'spots/getAllSpots'
 const DELETESPOT = 'spots/deleteSpot'
+const EDITSPOT = 'spots/editSpot'
 
 export const receiveSpots = (spots) => {
   return {
@@ -32,6 +33,14 @@ export const deleteSpotAction = (spotId) => {
   return {
     type: DELETESPOT,
     spotId,
+  };
+};
+
+//action creator for editting one spot
+export const editSpotAction = (payload) => {
+  return {
+    type: EDITSPOT,
+    payload,
   };
 };
 
@@ -102,6 +111,28 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
   }
 };
 
+//Thunk for editting a spot
+export const editSpotThunk = (spotId, payload) => async (dispatch) => {
+  console.log('edit spot thunk--------------------')
+  const { address, city, state, country, name, description, price } = payload
+  const res = await csrfFetch(`/api/spots/${spotId}`, {method: 'PUT',
+  body: JSON.stringify({
+    address,
+    city,
+    state,
+    country,
+    name,
+    description,
+    price
+  })});
+  if (res.ok) {
+    const editSpot = await res.json()
+    dispatch(editSpotAction(editSpot));
+  }
+};
+
+
+
 //Reducer
     // const initialState = {}
 export default function spotReducer(state = {}, action){
@@ -122,6 +153,11 @@ export default function spotReducer(state = {}, action){
       newState = {...state}
       delete newState.action.spotId
         return newState
+      case EDITSPOT:
+      newState = {...state}
+      const spotId = action.spot.id
+      newState[spotId] = action.spot
+      return newState
     default:
       return state
   }

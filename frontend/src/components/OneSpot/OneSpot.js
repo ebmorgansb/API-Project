@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux"
 import { getSpotThunk } from "../../store/spot"
 import { deleteSpotThunk } from "../../store/spot"
+import { editSpotAction } from "../../store/spot"
+import { editSpotThunk } from "../../store/spot"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { deleteSpotAction } from "../../store/spot"
@@ -17,7 +19,6 @@ export default function OneSpot() {
 
         useEffect(() => {
           dispatch(getSpotThunk(spotId))
-          dispatch(deleteSpotThunk(spotId))
         }, [dispatch, spotId])
 
         if (!spotObject || !spotObject.SpotImages) {
@@ -33,8 +34,11 @@ export default function OneSpot() {
         </div>
         <img alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img>
         <div>{spotObject.description}</div>
+        <NavLink to={`/editSpotty/${spotId}`}>
+        <button>Edit Spot</button>
+        </NavLink>
         <NavLink to={`/`}>
-        <button onClick={()=> {dispatch(deleteSpotAction(spotId))}}>Delete Spot</button>
+        <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
         </NavLink>
     </div>
     )
