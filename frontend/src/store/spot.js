@@ -37,10 +37,10 @@ export const deleteSpotAction = (spotId) => {
 };
 
 //action creator for editting one spot
-export const editSpotAction = (payload) => {
+export const editSpotAction = (spot) => {
   return {
     type: EDITSPOT,
-    payload,
+    spot,
   };
 };
 
@@ -125,9 +125,12 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
     description,
     price
   })});
+  console.log(res, 'where is res')
   if (res.ok) {
     const editSpot = await res.json()
+    console.log(editSpot, 'editspot in the reducer')
     dispatch(editSpotAction(editSpot));
+
   }
 };
 
@@ -155,8 +158,8 @@ export default function spotReducer(state = {}, action){
         return newState
       case EDITSPOT:
       newState = {...state}
-      const spotId = action.spot.id
-      newState[spotId] = action.spot
+      // const spotId = action.spot.id
+      newState[action.spot.id] = action.spot
       return newState
     default:
       return state

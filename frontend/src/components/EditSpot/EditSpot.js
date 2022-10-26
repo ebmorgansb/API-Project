@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { editSpotThunk } from "../../store/spot"
 import { useParams } from "react-router-dom"
 
 export default function EditSpot() {
-    const {spotId} = useParams
     const dispatch = useDispatch()
     const history = useHistory()
+    const {spotId} = useParams()
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -32,10 +32,12 @@ export default function EditSpot() {
             price,
         };
         console.log('this is the PAYLOAD', payload)
-        let newSpot = dispatch(editSpotThunk(spotId, payload))
-        if (newSpot) {
-          history.push(`/`);
-        }
+        console.log('spotId in the form comp',spotId)
+        // let newSpot = dispatch(editSpotThunk(spotId, payload))
+        dispatch(editSpotThunk(spotId, payload))
+        // if (newSpot) {
+          history.push(`/`)
+        // }
 
     }
 

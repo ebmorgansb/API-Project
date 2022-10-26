@@ -1,12 +1,10 @@
 import { useSelector, useDispatch } from "react-redux"
-import { getSpotThunk } from "../../store/spot"
-import { deleteSpotThunk } from "../../store/spot"
-import { editSpotAction } from "../../store/spot"
-import { editSpotThunk } from "../../store/spot"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { deleteSpotAction } from "../../store/spot"
 import { NavLink } from "react-router-dom"
+import { getSpotThunk } from "../../store/spot"
+import { deleteSpotThunk } from "../../store/spot"
+import AllReviews from '../AllReviews/AllReviews'
 
 export default function OneSpot() {
     let {spotId} = useParams()
@@ -26,6 +24,7 @@ export default function OneSpot() {
         }
 
     return (
+        <>
     <div>
         <h2>{spotObject.name}</h2>
         <div>
@@ -41,5 +40,7 @@ export default function OneSpot() {
         <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
         </NavLink>
     </div>
+    <AllReviews/>
+    </>
     )
 }
