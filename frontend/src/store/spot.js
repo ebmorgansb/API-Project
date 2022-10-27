@@ -137,7 +137,7 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
 
 
 //Reducer
-    // const initialState = {}
+
 export default function spotReducer(state = {}, action){
     let newState = {}
   switch(action.type){

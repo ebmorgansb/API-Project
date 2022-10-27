@@ -1,10 +1,14 @@
 import {useDispatch, useSelector} from 'react-redux'
 import { getReviewsThunk } from '../../store/review'
-import {useEffect} from 'react'
+import CreateReviewForm from '../CreateReviewForm/CreateReviewForm'
+import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import './allReviews.css'
+import { Modal } from '../../context/Modal';
+
 
 export default function AllReviews () {
+  const [showModal, setShowModal] = useState(false);
   let {spotId} = useParams()
   spotId = parseInt(spotId)
   const dispatch = useDispatch()
@@ -24,6 +28,13 @@ export default function AllReviews () {
 if (!reviewsObject) return null;
 
 return (
+  <>
+      <button onClick={() => setShowModal(true)}>Create a Review</button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <CreateReviewForm/>
+        </Modal>
+      )}
     <div className='allReviews'>
     {reviews.map(review => (
       <div className='oneReview'>
@@ -33,5 +44,6 @@ return (
       </div>
           ))}
     </div>
+    </>
 )
 }
