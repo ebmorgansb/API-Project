@@ -1,4 +1,4 @@
-// import {csrfFetch} from './csrf'
+import {csrfFetch} from './csrf'
 
 const GETREVIEWS = 'reviews/getReviews'
 const CREATEREVIEW = 'reviews/createReview'
@@ -16,7 +16,7 @@ export const receiveReviewsAction = (reviews) => {
     };
   };
 
-  //Thunk for getting all spots
+  //Thunk for getting all reviews
 export const getReviewsThunk = (spotId) => async (dispatch) => {
     const res = await fetch(`/api/spots/${spotId}/reviews`);
     if (res.ok) {
@@ -29,7 +29,7 @@ export const getReviewsThunk = (spotId) => async (dispatch) => {
     //Thunk for creating a review
 export const createReviewThunk = (newReview, spotId) => async (dispatch) => {
   const {review, stars} = newReview
-  const res = await fetch(`/api/spots/${spotId}/reviews`,
+  const res = await csrfFetch(`/api/spots/${spotId}/reviews`,
   {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
@@ -41,7 +41,7 @@ export const createReviewThunk = (newReview, spotId) => async (dispatch) => {
   if (res.ok) {
     const newReview = await res.json();
     console.log('New Review Thunk', newReview)
-    dispatch(createReviewAction)
+    dispatch(createReviewAction(newReview))
 }
 }
   //Reducer

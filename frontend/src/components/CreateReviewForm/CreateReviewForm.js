@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { createSpot } from "../../store/spot"
 import { useHistory } from "react-router-dom"
 import { createReviewThunk } from "../../store/review"
+import { useParams } from "react-router-dom"
 // import {setShowModal} from '../../context/Modal';
 
 export default function CreateReviewForm() {
@@ -10,8 +11,7 @@ export default function CreateReviewForm() {
     const history = useHistory()
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
-
-
+    const {spotId} = useParams()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,10 +22,8 @@ export default function CreateReviewForm() {
             stars
         };
 
-        let newReview = dispatch(createReviewThunk(payload))
-        if (newReview) {
-            history.push(`/`);
-          }
+        dispatch(createReviewThunk(payload, spotId))
+
     }
 
     return (

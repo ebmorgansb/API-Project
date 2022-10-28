@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom"
 import { getSpotThunk } from "../../store/spot"
 import { deleteSpotThunk } from "../../store/spot"
 import AllReviews from '../AllReviews/AllReviews'
+import './oneSpot.css'
 
 export default function OneSpot() {
     let {spotId} = useParams()
@@ -32,13 +33,17 @@ export default function OneSpot() {
             <div>{spotObject.city}, {spotObject.state}, {spotObject.country}</div>
         </div>
         <img alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img>
-        <div>{spotObject.description}</div>
+
+        <div className="spotDescriptionTopBorder">{spotObject.description}</div>
+
+        <div className="editDeleteSpot">
         <NavLink to={`/editSpotty/${spotId}`}>
         <button>Edit Spot</button>
         </NavLink>
         <NavLink to={`/`}>
         <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
         </NavLink>
+        </div>
     </div>
     <AllReviews/>
     </>

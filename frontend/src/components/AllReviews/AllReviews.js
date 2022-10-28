@@ -38,7 +38,7 @@ return (
     <div className='allReviews'>
     {reviews.map(review => (
       <div className='oneReview'>
-        <div>{reviews[0]?.User.firstName}</div>
+         <div>{reviews[0]?.User.firstName}</div> 
         <div>{reviews[0]?.createdAt.substr(0, 7)}</div>
         <div>{review.review}</div>
       </div>
