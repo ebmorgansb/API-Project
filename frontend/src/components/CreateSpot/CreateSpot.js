@@ -33,9 +33,9 @@ export default function CreateSpot() {
         };
 
         let newSpot = dispatch(createSpotThunk(payload))
-        if (newSpot) {
-          history.push(`/`);
-        }
+        // if (newSpot) {
+        //   history.push(`/`);
+        // }
 
     }
 

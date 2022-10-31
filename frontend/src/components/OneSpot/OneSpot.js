@@ -44,8 +44,8 @@ export default function OneSpot() {
         <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
         </NavLink>
         </div>
+        <AllReviews/>
     </div>
-    <AllReviews/>
     </>
     )
 }

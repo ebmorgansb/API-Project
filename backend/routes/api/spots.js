@@ -52,11 +52,11 @@ router.get('/', async (req, res) => {
       }
       delete spotArr[i].SpotImages
       let avgRating = counter/reviews.length
-      if (avgRating == 'NaN') {
-
-        spot.avgRating = '0.0'
-    }
       spot.avgRating = avgRating.toFixed(2)
+      if (spot.avgRating == 'NaN') {
+
+        spot.avgRating = 'New'
+    }
       delete spotArr[i].Reviews
 
     }
