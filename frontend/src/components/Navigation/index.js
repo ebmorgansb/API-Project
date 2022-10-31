@@ -34,18 +34,20 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='topBar'>
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
-    <button onClick={() => setShowModal(true)}>Become a Host</button>
+      <div>
+        <NavLink exact to="/">
+        <img className='imgLogo' src='./favicon.png'></img>
+        </NavLink>
+      </div>
+      <div>
+      {isLoaded && sessionLinks}
+    <button className='becomeHost' onClick={() => setShowModal(true)}>Become a Host</button>
     {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateSpot/>
         </Modal>
       )}
+      </div>
     </div>
   );
 }

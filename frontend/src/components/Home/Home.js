@@ -1,4 +1,5 @@
 import SpotCard from '../SpotCard/SpotCard';
+import './home.css'
 
 function Home () {
 

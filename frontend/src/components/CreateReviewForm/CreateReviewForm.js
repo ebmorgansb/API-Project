@@ -46,7 +46,7 @@ export default function CreateReviewForm() {
      </label>
      </div>
      <div className="oneFormInput">
-     <label>
+     <label className="fontForm">
         Stars: {stars}
         <div className="formPadding">
         <input
