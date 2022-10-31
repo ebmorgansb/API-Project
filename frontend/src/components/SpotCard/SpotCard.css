@@ -12,8 +12,9 @@
 .spotCard {
     width: 300px;
     height: 300px;
-    margin: 15px;
+    margin: 18px;
     text-decoration: none;
+    color: black;
 }
 
 .allSpotCards {

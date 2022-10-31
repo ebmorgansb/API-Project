@@ -34,7 +34,7 @@ if (!spotsObject) return null;
         <div className='spotCardText'>
           <div>
             <div key={`c${spot.id}`}>{`${spot.city}, ${spot.state}`}</div>
-            <div key={`h${spot.id}`}>{spot.country}</div>
+            <div key={`h${spot.id}`}>United States</div>
             <div key={`e${spot.id}`}>${spot.price} night</div>
           </div>
           <div key={`d${spot.id}`}>★{spot.avgRating}</div>

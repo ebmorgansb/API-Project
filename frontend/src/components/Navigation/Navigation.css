@@ -18,4 +18,7 @@
     background-color: transparent;
     border: none;
     font-weight: bold;
+    margin: 5px;
+    font-size: 15px;
+    color:rgba(12, 11, 11, 0.8)
 }
