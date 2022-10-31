@@ -35,7 +35,7 @@ return (
   <>
       <button onClick={() => setShowModal(true)}>Create a Review</button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal style='test' onClose={() => setShowModal(false)}>
           <CreateReviewForm/>
         </Modal>
       )}

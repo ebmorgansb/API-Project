@@ -1,17 +1,18 @@
 .spotCardUpperText {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .spotCardImg {
     height: 75%;
     width: 75%;
+    border-radius: 25px;
 }
 
 .spotCard {
     height: 400px;
-    width: 400px;
+    width: 400px;;
 }
 
 .allSpotCards {

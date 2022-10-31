@@ -4,7 +4,7 @@ import { createSpot } from "../../store/spot"
 import { useHistory } from "react-router-dom"
 import { createReviewThunk } from "../../store/review"
 import { useParams } from "react-router-dom"
-// import {setShowModal} from '../../context/Modal';
+import './createReviewForm.css';
 
 export default function CreateReviewForm() {
     const dispatch = useDispatch()
@@ -27,28 +27,42 @@ export default function CreateReviewForm() {
     }
 
     return (
-     <form onSubmit={handleSubmit}>
+
+    <div className="fullReviewForm">
+      <h2>Add a Review</h2>
+     <form  onSubmit={handleSubmit}>
+      <div className="formInputs">
+    <div className="oneFormInput">
      <label>
         Review
-        <input
+        <div className="formPadding">
+        <textarea className="textAreaInput"
           type="text"
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required
         />
+        </div>
      </label>
+     </div>
+     <div className="oneFormInput">
      <label>
-        Stars
+        Stars: {stars}
+        <div className="formPadding">
         <input
-          type="text"
+          type="range"
+          min="1" max="5"
+          step="1"
           value={stars}
           onChange={(e) => setStars(e.target.value)}
           required
         />
+        </div>
         </label>
-
-        <button type='submit'>Submit</button>
+        </div>
+        </div>
+        <button className="reviewSubmitButton" type='submit'>Submit</button>
       </form>
-
+    </div>
     )
 }

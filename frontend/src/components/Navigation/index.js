@@ -1,17 +1,20 @@
 import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import {useHistory} from 'react-router-dom'
+import { Modal } from '../../context/Modal';
+import CreateSpot from '../CreateSpot/CreateSpot';
 
 function Navigation({ isLoaded }){
-
+  const [showModal, setShowModal] = useState(false);
   const history = useHistory()
-  function handleClick() {
-    history.push("/createSpot");
-  }
+  // function handleClick() {
+  //   history.push("/createSpot");
+  // }
 
   const sessionUser = useSelector(state => state.session.user);
 
@@ -37,7 +40,12 @@ function Navigation({ isLoaded }){
         {isLoaded && sessionLinks}
       </li>
     </ul>
-    <button onClick={handleClick}>Become a Host</button>
+    <button onClick={() => setShowModal(true)}>Become a Host</button>
+    {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <CreateSpot/>
+        </Modal>
+      )}
     </div>
   );
 }

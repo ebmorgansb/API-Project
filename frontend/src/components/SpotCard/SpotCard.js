@@ -29,12 +29,12 @@ if (!spotsObject) return null;
     {spots.map(spot => (
       <NavLink to={`/spots/${spot.id}`}>
       <div key={`a${spot.id}`} className='spotCard'>
-        <div key={`b${spot.id}`} className='spotCardUpperText'>
+        <img alt='Spot Picture' key={`f${spot.id}`} className='spotCardImg' src={`${spot.previewImage}`}></img>
+        <div className='spotCardUpperText'>
           <div key={`c${spot.id}`}>{`${spot.city}, ${spot.state}`}</div>
           <div key={`d${spot.id}`}>{spot.avgRating}</div>
-        </div>
+          </div>
         <div key={`e${spot.id}`}>{`$${spot.price} per night`}</div>
-        <img alt='Spot Picture' key={`f${spot.id}`} className='spotCardImg' src={`${spot.previewImage}`}></img>
       </div>
       </NavLink>
           ))}

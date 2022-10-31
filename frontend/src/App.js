@@ -7,7 +7,6 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/Home/Home'
 import OneSpot from './components/OneSpot/OneSpot'
-import CreateSpot from "./components/CreateSpot/CreateSpot";
 import EditSpot from "./components/EditSpot/EditSpot";
 
 function App() {
@@ -24,9 +23,6 @@ function App() {
         <Switch>
           <Route path="/signup" exact>
             <SignupFormPage />
-          </Route>
-          <Route path="/createSpot" exact>
-            <CreateSpot/>
           </Route>
           <Route path="/editSpotty/:spotId" exact>
             <EditSpot/>
