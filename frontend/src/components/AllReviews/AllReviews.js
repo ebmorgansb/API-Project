@@ -23,7 +23,9 @@ export default function AllReviews () {
   if (reviewsObject) {
     reviews = Object.values(reviewsObject)
     // console.log('reviewsImg', reviews[0]?.ReviewImages[0].url)
+    console.log('reviews', reviews)
   }
+
 
   useEffect(() => {
     dispatch(getReviewsThunk(spotId))
@@ -32,7 +34,7 @@ export default function AllReviews () {
 if (!reviewsObject) return null;
 
 return (
-  <>
+      <div>
       <button onClick={() => setShowModal(true)}>Create a Review</button>
       {showModal && (
         <Modal style='test' onClose={() => setShowModal(false)}>
@@ -48,13 +50,13 @@ return (
         {sessionUserObject?.id === review.User.id &&
         <div>
         <NavLink to={`/spots/${spotId}`}>
-        <button onClick={()=> {dispatch(deleteReviewThunk(review.User.id))}}>Delete Review</button>
+        <button onClick={()=> {dispatch(deleteReviewThunk(review.id))}}>Delete Review</button>
         </NavLink>
         </div>
         }
       </div>
           ))}
     </div>
-    </>
+    </div>
 )
 }

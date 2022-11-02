@@ -10,29 +10,36 @@ import './oneSpot.css'
 export default function OneSpot() {
     let {spotId} = useParams()
     spotId = parseInt(spotId)
+    const dispatch = useDispatch()
 
-        const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getSpotThunk(spotId))
+      }, [dispatch, spotId])
+
 
         const spotObject = useSelector(state => state.spot[spotId])
-        console.log('Spot Object in OneSpot component',spotObject)
-
-        useEffect(() => {
-          dispatch(getSpotThunk(spotId))
-        }, [dispatch, spotId])
-
+        console.log('Spot Images', spotObject.SpotImages)
+        const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
             return null
         }
 
     return (
-        <>
-    <div>
-        <h2>{spotObject.name}</h2>
+    <div className="allOneSpot">
+        <h2 className="spotTitle">{spotObject.name}</h2>
         <div>
             <div>★{spotObject.avgStarRating} number of reviews hardcoded</div>
             <div>{spotObject.city}, {spotObject.state}, {spotObject.country}</div>
         </div>
-        <img alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img>
+        {/* <img className="imgWidth" alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img> */}
+
+        <div className="allSpotImages">
+        {spotImages.map(spotImage => (
+            // <div className='oneSpotImage' key={spotImage.id}>
+            <img className='oneSpotImage' alt='SpotImage' src={spotImage?.url}></img>
+            // </div>
+        ))}
+        </div>
 
         <div className="spotDescriptionTopBorder">{spotObject.description}</div>
 
@@ -46,6 +53,5 @@ export default function OneSpot() {
         </div>
         <AllReviews/>
     </div>
-    </>
     )
 }
