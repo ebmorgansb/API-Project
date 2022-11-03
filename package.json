@@ -25,5 +25,8 @@
     "url": "https://github.com/ebmorgansb/API-Project/issues"
   },
   "homepage": "https://github.com/ebmorgansb/API-Project#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "react-icons": "^4.6.0"
+  }
 }

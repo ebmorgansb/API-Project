@@ -17,7 +17,7 @@
 }
 
 .spotTitle {
-    margin-left: 50px;
+    font-size: 26px;
 }
 
 /* .imgWidth {
@@ -28,7 +28,7 @@
 
 .allSpotImages {
     width:100%;
-    height: 400px
+    height: 450px
 }
 
 .oneSpotImage {
@@ -36,4 +36,64 @@
     height: 200px;
     padding: 5px;
     border-radius: 5%;
+}
+
+.hostingBookingInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.centerOneSpot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.booking {
+    margin-top: 40px;
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 5%;
+
+}
+
+.bookingText {
+    font-size: 16px;
+    padding: 4px;
+}
+
+.hostingInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.symbolBox {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.symbolAndText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+    align-items: center;
+}
+
+.symbols {
+display: flex;
+flex-direction: column;
+align-items: end;
+}
+
+.oneSymbol {
+padding: 3px;
 }

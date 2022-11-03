@@ -6,6 +6,7 @@ import { getSpotThunk } from "../../store/spot"
 import { deleteSpotThunk } from "../../store/spot"
 import AllReviews from '../AllReviews/AllReviews'
 import './oneSpot.css'
+import { FaBeer } from 'react-icons/fa'
 
 export default function OneSpot() {
     let {spotId} = useParams()
@@ -18,7 +19,7 @@ export default function OneSpot() {
 
 
         const spotObject = useSelector(state => state.spot[spotId])
-        console.log('Spot Images', spotObject.SpotImages)
+        console.log('Spot Object in One Spot---', spotObject)
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
             return null
@@ -40,6 +41,66 @@ export default function OneSpot() {
             // </div>
         ))}
         </div>
+
+
+    <div className="centerOneSpot">
+
+            {/* Hosting information and box to the left about booking */}
+        <div className="hostingInfo">
+
+            <div>
+                <h2>
+                Entire home hosted by John and Doe
+                </h2>
+                <h3>
+                2 guests - 1 bedroom -1 bed - 1 bath
+                </h3>
+            </div>
+
+            <div className="symbolBox">
+                <div className="symbols">
+                    <div className="oneSymbol">
+                    <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div className="oneSymbol">
+                    <i class="fa-solid fa-door-open"></i>
+                    </div>
+                    <div className="oneSymbol">
+                    <i class="fa-solid fa-x"></i>
+                    </div>
+                </div>
+
+                <div className="symbolAndText">
+                    <div>Self Check-in for your convience!</div>
+                    <div>John is a superhost!</div>
+                    <div>Free cancellation before 48 hours.</div>
+                </div>
+            </div>
+
+        </div>
+
+
+            {/* this div is for the booking info on the side */}
+        <div className="booking">
+            <div className="bookingText">
+                ${spotObject.price} night
+            </div>
+            <div className="bookingText">
+            ${spotObject.price} x 2 nights = {spotObject.price * 2}
+            </div>
+            <div className="bookingText">
+                Cleaning Fee = $50
+            </div>
+            <div className="bookingText">
+                Service Fee = $25
+            </div>
+            <div className="bookingText">
+                Total Fee Before Taxes = {spotObject.price * 2 + 50+ 25}
+            </div>
+        </div>
+
+    </div>
+
 
         <div className="spotDescriptionTopBorder">{spotObject.description}</div>
 
