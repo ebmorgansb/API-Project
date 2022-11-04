@@ -44,15 +44,15 @@ export default function OneSpot() {
         </div>
 
         <div className="smallAndBigImgs">
-            <div>
-                <img className="imgWidth" alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img>
+            <div className="oneBigImgBox">
+                <img className='oneBigImg' alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img>
             </div>
 
-            <div>
-                <img src={imageArr[1]} alt='spotPix'></img>
-                <img src={imageArr[2]} alt='spotPix'></img>
-                <img src={imageArr[3]} alt='spotPix'></img>
-                <img src={imageArr[4]} alt='spotPix'></img>
+            <div className="smallImgsBox">
+                <img className="smallImgs" src={imageArr[1]} alt='spotPix'></img>
+                <img className="smallImgs" src={imageArr[2]} alt='spotPix'></img>
+                <img className="smallImgs" src={imageArr[3]} alt='spotPix'></img>
+                <img className="smallImgs" src={imageArr[4]} alt='spotPix'></img>
             </div>
         </div>
 
