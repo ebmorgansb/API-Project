@@ -17,12 +17,22 @@ export default function OneSpot() {
         dispatch(getSpotThunk(spotId))
       }, [dispatch, spotId])
 
-
         const spotObject = useSelector(state => state.spot[spotId])
         console.log('Spot Object in One Spot---', spotObject)
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
             return null
+        }
+
+        let imageArr = []
+        if (spotObject || spotObject.SpotImages) {
+            spotObject.SpotImages.forEach(img => {
+                imageArr.push(img.url)
+            })
+            while (imageArr.length < 6) {
+                let url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'
+                imageArr.push(url)
+            }
         }
 
     return (
@@ -32,15 +42,27 @@ export default function OneSpot() {
             <div>★{spotObject.avgStarRating} number of reviews hardcoded</div>
             <div>{spotObject.city}, {spotObject.state}, {spotObject.country}</div>
         </div>
-        {/* <img className="imgWidth" alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img> */}
 
-        <div className="allSpotImages">
-        {spotImages.map(spotImage => (
-            // <div className='oneSpotImage' key={spotImage.id}>
-            <img className='oneSpotImage' alt='SpotImage' src={spotImage?.url}></img>
-            // </div>
-        ))}
+        <div className="smallAndBigImgs">
+            <div>
+                <img className="imgWidth" alt='SpotImage' src={spotObject.SpotImages[0]?.url}></img>
+            </div>
+
+            <div>
+                <img src={imageArr[1]} alt='spotPix'></img>
+                <img src={imageArr[2]} alt='spotPix'></img>
+                <img src={imageArr[3]} alt='spotPix'></img>
+                <img src={imageArr[4]} alt='spotPix'></img>
+            </div>
         </div>
+
+        {/* <div className="allSpotImages">
+        {spotImages.map(spotImage => (
+            <div className='oneSpotImage' key={spotImage.id}>
+            <img className='oneSpotImage' alt='SpotImage' src={spotImage?.url}></img>
+            </div>
+        ))}
+        </div> */}
 
 
     <div className="centerOneSpot">
