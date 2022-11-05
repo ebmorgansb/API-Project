@@ -6,7 +6,8 @@ import { createReviewThunk } from "../../store/review"
 import { useParams } from "react-router-dom"
 import './createReviewForm.css';
 
-export default function CreateReviewForm() {
+export default function CreateReviewForm({setShowModal}) {
+
     const dispatch = useDispatch()
     const history = useHistory()
     const [review, setReview] = useState('');
@@ -21,7 +22,7 @@ export default function CreateReviewForm() {
             review,
             stars
         };
-
+        setShowModal(false)
         dispatch(createReviewThunk(payload, spotId))
 
     }

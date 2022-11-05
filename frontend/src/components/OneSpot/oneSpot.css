@@ -1,11 +1,16 @@
 .spotDescriptionTopBorder {
-    border-top: 2px solid black;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin: 20px 50px 20px;
+
 }
 
 .editDeleteSpot {
-    border-bottom: 2px solid black;
     margin: 20px 50px 20px;
+    border-top: 1px solid grey;
+    padding-top: 15px;
 }
 
 .allOneSpot {
@@ -116,6 +121,7 @@ height: 350px;
 .oneBigImg {
     width: 100%;
     height: 100%;
+    border-radius: 5%;
 }
 .smallImgsBox {
     display: flex;
@@ -131,4 +137,7 @@ height: 350px;
     height: 45%;
     padding-left: 8px;
     padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 8%;
 }

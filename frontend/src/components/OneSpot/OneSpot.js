@@ -18,6 +18,13 @@ export default function OneSpot() {
       }, [dispatch, spotId])
 
         const spotObject = useSelector(state => state.spot[spotId])
+        const sessionUserObject = useSelector(state => state.session.user);
+        const reviewsObject = useSelector(state => state.review)
+        let reviews = []
+        if (reviewsObject) {
+            reviews = Object.values(reviewsObject)
+        }
+        console.log('review Object in One Spot', reviewsObject)
         console.log('Spot Object in One Spot---', spotObject)
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
@@ -39,7 +46,7 @@ export default function OneSpot() {
     <div className="allOneSpot">
         <h2 className="spotTitle">{spotObject.name}</h2>
         <div>
-            <div>★{spotObject.avgStarRating} number of reviews hardcoded</div>
+            <div>★{spotObject.avgStarRating} - {reviews.length} reviews</div>
             <div>{spotObject.city}, {spotObject.state}, {spotObject.country}</div>
         </div>
 
@@ -56,14 +63,6 @@ export default function OneSpot() {
             </div>
         </div>
 
-        {/* <div className="allSpotImages">
-        {spotImages.map(spotImage => (
-            <div className='oneSpotImage' key={spotImage.id}>
-            <img className='oneSpotImage' alt='SpotImage' src={spotImage?.url}></img>
-            </div>
-        ))}
-        </div> */}
-
 
     <div className="centerOneSpot">
 
@@ -72,7 +71,7 @@ export default function OneSpot() {
 
             <div>
                 <h2>
-                Entire home hosted by John and Doe
+                Entire home hosted by {spotObject.User.firstName} {spotObject.User.lastName}
                 </h2>
                 <h3>
                 2 guests - 1 bedroom -1 bed - 1 bath
@@ -124,16 +123,17 @@ export default function OneSpot() {
     </div>
 
 
-        <div className="spotDescriptionTopBorder">{spotObject.description}</div>
-
-        <div className="editDeleteSpot">
-        <NavLink to={`/editSpotty/${spotId}`}>
-        <button>Edit Spot</button>
-        </NavLink>
-        <NavLink to={`/`}>
-        <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
-        </NavLink>
-        </div>
+    <div className="spotDescriptionTopBorder">{spotObject.description}</div>
+        {sessionUserObject?.id  === spotObject.ownerId &&
+            <div className="editDeleteSpot">
+            <NavLink to={`/editSpotty/${spotId}`}>
+            <button>Edit Spot</button>
+            </NavLink>
+            <NavLink to={`/`}>
+            <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
+            </NavLink>
+            </div>
+}       <div>★{spotObject.avgStarRating} - {reviews.length} reviews</div>
         <AllReviews/>
     </div>
     )

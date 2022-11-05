@@ -20,11 +20,17 @@ export default function AllReviews () {
   const sessionUserObject = useSelector(state => state.session.user);
   const reviewsObject = useSelector(state => state.review)
   console.log('reviews comp', reviewsObject)
+  let totalRating = 0
   if (reviewsObject) {
     reviews = Object.values(reviewsObject)
     // console.log('reviewsImg', reviews[0]?.ReviewImages[0].url)
     console.log('reviews', reviews)
+    reviews.forEach(review => {
+      totalRating += review.stars
+    })
   }
+  let avgRating = totalRating/reviews.length
+  avgRating = avgRating.toFixed(2)
 
 
   useEffect(() => {
@@ -34,13 +40,20 @@ export default function AllReviews () {
 if (!reviewsObject) return null;
 
 return (
+
       <div>
-      <button onClick={() => setShowModal(true)}>Create a Review</button>
-      {showModal && (
+        <div className='ratingAndCreate'>
+          <div className='ratingAndTotalReviews'>
+          </div>
+          <div>
+          <button onClick={() => setShowModal(true)}>Create a Review</button>
+          </div>
+        </div>
+        {showModal && (
         <Modal style='test' onClose={() => setShowModal(false)}>
-          <CreateReviewForm/>
+          <CreateReviewForm setShowModal={setShowModal}/>
         </Modal>
-      )}
+        )}
     <div className='allReviews'>
     {reviews.map(review => (
       <div  className='oneReview'>
