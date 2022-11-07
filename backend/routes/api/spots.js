@@ -257,7 +257,7 @@ const theSpot = await Spot.findOne({
   where: {
     id: spotId
   },
-  include: [{model: SpotImage, attributes: ['id', 'url', 'preview']}]
+  include: [{model: SpotImage, attributes: ['id', 'url', 'preview']}, {model: User, attributes: ['id', 'firstName', 'lastName']}]
 })
 
 
@@ -280,7 +280,8 @@ const assocUser = await User.findOne({
 const theRealSpot = theSpot.toJSON()
 let numReviewz = reviewsArr.length
 // if(numReviewz) {
-  let avgRating = starCount/numReviewz.toFixed(1)
+  let avgRating = starCount/numReviewz
+  avgRating = avgRating.toFixed(2)
   theRealSpot.numReviews = numReviewz
   theRealSpot.avgStarRating = avgRating
   // theRealSpot.Owner = newUser

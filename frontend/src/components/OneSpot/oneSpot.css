@@ -1,9 +1,143 @@
 .spotDescriptionTopBorder {
-    border-top: 2px solid black;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin: 20px 50px 20px;
+
 }
 
 .editDeleteSpot {
-    border-bottom: 2px solid black;
     margin: 20px 50px 20px;
+    border-top: 1px solid grey;
+    padding-top: 15px;
+}
+
+.allOneSpot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1110px;
+    margin: 0 auto
+}
+
+.spotTitle {
+    font-size: 26px;
+}
+
+/* .imgWidth {
+    width: 400px;
+    height: 400px;
+
+} */
+
+.allSpotImages {
+    width:100%;
+    height: 450px
+}
+
+.oneSpotImage {
+    width: 30%;
+    height: 200px;
+    padding: 5px;
+    border-radius: 5%;
+}
+
+.hostingBookingInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.centerOneSpot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.booking {
+    margin-top: 40px;
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 5%;
+
+}
+
+.bookingText {
+    font-size: 16px;
+    padding: 4px;
+}
+
+.hostingInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.symbolBox {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.symbolAndText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+    align-items: center;
+}
+
+.symbols {
+display: flex;
+flex-direction: column;
+align-items: end;
+}
+
+.oneSymbol {
+padding: 3px;
+}
+
+.smallAndBigImgs {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 350px;
+
+}
+
+.oneBigImgBox {
+    width:40%;
+    height: 100%;
+}
+
+.oneBigImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+}
+.smallImgsBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width:60%;
+    height: 100%;
+}
+
+.smallImgs {
+    width: 45%;
+    height: 45%;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 8%;
 }
