@@ -1,14 +1,17 @@
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { Modal } from "../../context/Modal"
 import { NavLink } from "react-router-dom"
 import { getSpotThunk } from "../../store/spot"
 import { deleteSpotThunk } from "../../store/spot"
 import AllReviews from '../AllReviews/AllReviews'
+import EditSpot from '../EditSpot/EditSpot'
 import './oneSpot.css'
 import { FaBeer } from 'react-icons/fa'
 
 export default function OneSpot() {
+    const [showModal, setShowModal] = useState(false);
     let {spotId} = useParams()
     spotId = parseInt(spotId)
     const dispatch = useDispatch()
@@ -126,9 +129,12 @@ export default function OneSpot() {
     <div className="spotDescriptionTopBorder">{spotObject.description}</div>
         {sessionUserObject?.id  === spotObject.ownerId &&
             <div className="editDeleteSpot">
-            <NavLink to={`/editSpotty/${spotId}`}>
-            <button>Edit Spot</button>
-            </NavLink>
+            <button onClick={() => setShowModal(true)}>Edit your spot</button>
+            {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+            <EditSpot/>
+            </Modal>
+            )}
             <NavLink to={`/`}>
             <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
             </NavLink>

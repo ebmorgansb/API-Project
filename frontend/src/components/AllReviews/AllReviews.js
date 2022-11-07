@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom'
 export default function AllReviews () {
 
   const [showModal, setShowModal] = useState(false);
+  
   let {spotId} = useParams()
   spotId = parseInt(spotId)
   console.log(spotId, 'AllReview comp')
