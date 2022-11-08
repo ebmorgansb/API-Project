@@ -44,7 +44,7 @@ function Navigation({ isLoaded }){
     <button className='becomeHost' onClick={() => setShowModal(true)}>Become a Host</button>
     {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateSpot/>
+          <CreateSpot setShowModal={setShowModal} />
         </Modal>
       )}
       </div>

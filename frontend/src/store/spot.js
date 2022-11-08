@@ -75,9 +75,11 @@ export const createSpotThunk = (spot) => async (dispatch) => {
    )
    if (image.ok) {
     const addImage = await image.json()
-    newSpot[previewImage] = addImage.url
+    newSpot.previewImage = addImage.url
+    newSpot.avgRating = 0
     console.log('newSpot with img', newSpot)
     dispatch(createSpotAction(newSpot));
+    return newSpot
    }
  }
 };
@@ -130,7 +132,7 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
     const editSpot = await res.json()
     console.log(editSpot, 'editspot in the reducer')
     dispatch(editSpotAction(editSpot));
-
+    return editSpot
   }
 };
 
@@ -150,11 +152,12 @@ export default function spotReducer(state = {}, action){
         newState[action.spot.id] = action.spot
         return newState
       case CREATEONESPOT:
-        newState = {...state, ...action.spot}
+        newState = {...state}
+        newState[action.spot.id] = action.spot
         return newState
       case DELETESPOT:
       newState = {...state}
-      delete newState.action.spotId
+      delete newState[action.spotId]
         return newState
       case EDITSPOT:
       newState = {...state}

@@ -33,8 +33,10 @@ export default function CreateSpot({setShowModal}) {
             previewImage
         };
 
-        setShowModal(false)
-        let newSpot = dispatch(createSpotThunk(payload))
+        let newSpot = await dispatch(createSpotThunk(payload))
+        if (newSpot) {
+          setShowModal(false)
+        }
 
 
     }

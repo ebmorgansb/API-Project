@@ -19,7 +19,7 @@ export default function EditSpot({setShowModal}) {
     const [previewImage, setPreviewImage] = useState('')
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
 
@@ -33,8 +33,11 @@ export default function EditSpot({setShowModal}) {
             price,
         };
 
-        setShowModal(false)
-        dispatch(editSpotThunk(spotId, payload))
+
+        let newSpot = await dispatch(editSpotThunk(spotId, payload))
+        if (newSpot) {
+          setShowModal(false)
+        }
     }
 
     return (
