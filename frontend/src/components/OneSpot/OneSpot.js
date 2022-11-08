@@ -129,17 +129,17 @@ export default function OneSpot() {
     <div className="spotDescriptionTopBorder">{spotObject.description}</div>
         {sessionUserObject?.id  === spotObject.ownerId &&
             <div className="editDeleteSpot">
-            <button onClick={() => setShowModal(true)}>Edit your spot</button>
+            <button className='crudButton' onClick={() => setShowModal(true)}>Edit your spot</button>
             {showModal && (
             <Modal onClose={() => setShowModal(false)}>
             <EditSpot/>
             </Modal>
             )}
             <NavLink to={`/`}>
-            <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
+            <button className='crudButton' onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
             </NavLink>
             </div>
-}       <div>★{spotObject.avgStarRating} - {reviews.length} reviews</div>
+}       <div className="ratingAndReviewAmount">★{spotObject.avgStarRating} - {reviews.length} reviews</div>
         <AllReviews/>
     </div>
     )

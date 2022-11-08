@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom'
 export default function AllReviews () {
 
   const [showModal, setShowModal] = useState(false);
-  
+
   let {spotId} = useParams()
   spotId = parseInt(spotId)
   console.log(spotId, 'AllReview comp')
@@ -47,7 +47,7 @@ return (
           <div className='ratingAndTotalReviews'>
           </div>
           <div>
-          <button onClick={() => setShowModal(true)}>Create a Review</button>
+          <button className='crudButton' onClick={() => setShowModal(true)}>Create a Review</button>
           </div>
         </div>
         {showModal && (
@@ -58,13 +58,13 @@ return (
     <div className='allReviews'>
     {reviews.map(review => (
       <div  className='oneReview'>
-         <div>{reviews[0]?.User.firstName}</div>
-        <div>{reviews[0]?.createdAt.substr(0, 7)}</div>
+         <div className='reviewName'>{reviews[0]?.User.firstName}</div>
+        <div className='reviewDate'>{reviews[0]?.createdAt.substr(0, 7)}</div>
         <div>{review.review}</div>
         {sessionUserObject?.id === review.User.id &&
         <div>
         <NavLink to={`/spots/${spotId}`}>
-        <button onClick={()=> {dispatch(deleteReviewThunk(review.id))}}>Delete Review</button>
+        <button className='crudButton' onClick={()=> {dispatch(deleteReviewThunk(review.id))}}>Delete Review</button>
         </NavLink>
         </div>
         }
