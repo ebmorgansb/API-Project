@@ -29,7 +29,6 @@ export const getReviewsThunk = (spotId) => async (dispatch) => {
     const res = await fetch(`/api/spots/${spotId}/reviews`);
     if (res.ok) {
       const data = await res.json();
-      console.log('getReviewsThunk data', data.Reviews)
       dispatch(receiveReviewsAction(data.Reviews));
     }
   };
@@ -48,8 +47,9 @@ export const createReviewThunk = (newReview, spotId) => async (dispatch) => {
     })
   if (res.ok) {
     const newReview = await res.json();
-    console.log('New Review Thunk', newReview)
+    // newReview.User = {}
     dispatch(createReviewAction(newReview))
+    return newReview
 }
 }
 
@@ -58,9 +58,9 @@ export const createReviewThunk = (newReview, spotId) => async (dispatch) => {
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews/${reviewId}`, {method: 'DELETE'});
   if (res.ok) {
-    const data = await res.json();
+    // const data = await res.json();
     dispatch(deleteReviewAction(reviewId));
-    return data
+    // return data
   }
 };
 
@@ -77,12 +77,12 @@ export default function reviewReducer(state = {}, action){
       })
       return newState
       case CREATEREVIEW:
-        newState = {...state, ...action.review}
+        newState = {...state}
+        newState[action.review.id] = action.review
         return newState
         case DELETEREVIEW:
           newState = {...state}
-          // delete newState.review.action.reviewId
-          delete newState.review[action.reviewId]
+          delete newState[action.reviewId]
             return newState
       default:
         return state

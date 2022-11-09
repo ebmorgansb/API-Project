@@ -39,7 +39,6 @@ export default function EditSpot({setShowModal}) {
         let newSpot = await dispatch(editSpotThunk(spotId, payload))
 
         if (newSpot) {
-          console.log('newEditSpot in the EditSpot comp', newSpot)
           //The below code is fetching the old Spot
           await dispatch(getSpotThunk(newSpot.id))
           setShowModal(false)

@@ -77,7 +77,6 @@ export const createSpotThunk = (spot) => async (dispatch) => {
     const addImage = await image.json()
     newSpot.previewImage = addImage.url
     newSpot.avgRating = 0
-    console.log('newSpot with img', newSpot)
     dispatch(createSpotAction(newSpot));
     return newSpot
    }
@@ -90,7 +89,6 @@ export const getSpotsThunk = () => async (dispatch) => {
   const res = await fetch(`/api/spots`);
   // if (res.ok) {
     const data = await res.json();
-    console.log('Fetch Spots Thunk', data)
     dispatch(receiveSpots(data.Spots));
   // }
 };
@@ -100,7 +98,6 @@ export const getSpotThunk = (spotId) => async (dispatch) => {
   const res = await fetch(`/api/spots/${spotId}`);
   if (res.ok) {
     const spot = await res.json();
-    console.log('Thunk spot data', spot)
     dispatch(receiveSpot(spot));
   }
 };
@@ -115,7 +112,6 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 
 //Thunk for editting a spot
 export const editSpotThunk = (spotId, payload) => async (dispatch) => {
-  console.log('edit spot thunk--------------------')
   const { address, city, state, country, name, description, price, previewImage } = payload
   const res = await csrfFetch(`/api/spots/${spotId}`, {method: 'PUT',
   body: JSON.stringify({
@@ -128,10 +124,8 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
     price,
     previewImage
   })});
-  console.log('Res in edit spot Thunk in Edit Spot Comp', res.ok)
   if (res.ok) {
     const editSpot = await res.json()
-    console.log('editspot in the reducer', editSpot)
     dispatch(editSpotAction(editSpot));
     return editSpot
   }

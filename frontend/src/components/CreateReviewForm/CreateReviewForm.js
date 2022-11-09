@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { createSpot } from "../../store/spot"
 import { useHistory } from "react-router-dom"
-import { createReviewThunk } from "../../store/review"
+import { createReviewThunk, getReviewsThunk } from "../../store/review"
 import { useParams } from "react-router-dom"
 import './createReviewForm.css';
 
@@ -22,8 +22,12 @@ export default function CreateReviewForm({setShowModal}) {
             review,
             stars
         };
+
+        let newReview = await dispatch(createReviewThunk(payload, spotId))
+        if (newReview) {
+          await dispatch(getReviewsThunk(spotId))
         setShowModal(false)
-        dispatch(createReviewThunk(payload, spotId))
+        }
 
     }
 

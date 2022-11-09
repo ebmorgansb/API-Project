@@ -14,7 +14,6 @@ export default function SpotCard () {
 
   let spots = []
   const spotsObject = useSelector(state => state.spot)
-  console.log('jbwbafewfbhBWFBFE', spotsObject)
   if (spotsObject) {
     spots = Object.values(spotsObject)
   }

@@ -27,8 +27,6 @@ export default function OneSpot() {
         if (reviewsObject) {
             reviews = Object.values(reviewsObject)
         }
-        // console.log('review Object in One Spot', reviewsObject)
-        console.log('Spot Object in One Spot---', spotObject)
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
             return null
