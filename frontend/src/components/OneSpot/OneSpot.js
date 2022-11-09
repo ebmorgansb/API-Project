@@ -27,7 +27,7 @@ export default function OneSpot() {
         if (reviewsObject) {
             reviews = Object.values(reviewsObject)
         }
-        console.log('review Object in One Spot', reviewsObject)
+        // console.log('review Object in One Spot', reviewsObject)
         console.log('Spot Object in One Spot---', spotObject)
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
@@ -132,7 +132,7 @@ export default function OneSpot() {
             <button className='crudButton' onClick={() => setShowModal(true)}>Edit your spot</button>
             {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-            <EditSpot/>
+            <EditSpot setShowModal={setShowModal}/>
             </Modal>
             )}
             <NavLink to={`/`}>

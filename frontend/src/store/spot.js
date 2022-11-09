@@ -116,7 +116,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 //Thunk for editting a spot
 export const editSpotThunk = (spotId, payload) => async (dispatch) => {
   console.log('edit spot thunk--------------------')
-  const { address, city, state, country, name, description, price } = payload
+  const { address, city, state, country, name, description, price, previewImage } = payload
   const res = await csrfFetch(`/api/spots/${spotId}`, {method: 'PUT',
   body: JSON.stringify({
     address,
@@ -125,12 +125,13 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
     country,
     name,
     description,
-    price
+    price,
+    previewImage
   })});
-  console.log(res, 'where is res')
+  console.log('Res in edit spot Thunk in Edit Spot Comp', res.ok)
   if (res.ok) {
     const editSpot = await res.json()
-    console.log(editSpot, 'editspot in the reducer')
+    console.log('editspot in the reducer', editSpot)
     dispatch(editSpotAction(editSpot));
     return editSpot
   }
@@ -161,8 +162,7 @@ export default function spotReducer(state = {}, action){
         return newState
       case EDITSPOT:
       newState = {...state}
-      // const spotId = action.spot.id
-      newState[action.spot.id] = action.spot
+      newState[action.spot.id] = {...newState[action.spot.id], ...action.spot}
       return newState
     default:
       return state
