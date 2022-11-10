@@ -27,8 +27,6 @@ export default function OneSpot() {
         if (reviewsObject) {
             reviews = Object.values(reviewsObject)
         }
-        console.log('review Object in One Spot', reviewsObject)
-        console.log('Spot Object in One Spot---', spotObject)
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
             return null
@@ -129,17 +127,17 @@ export default function OneSpot() {
     <div className="spotDescriptionTopBorder">{spotObject.description}</div>
         {sessionUserObject?.id  === spotObject.ownerId &&
             <div className="editDeleteSpot">
-            <button onClick={() => setShowModal(true)}>Edit your spot</button>
+            <button className='crudButton' onClick={() => setShowModal(true)}>Edit your spot</button>
             {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-            <EditSpot/>
+            <EditSpot setShowModal={setShowModal}/>
             </Modal>
             )}
             <NavLink to={`/`}>
-            <button onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
+            <button className='crudButton' onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
             </NavLink>
             </div>
-}       <div>★{spotObject.avgStarRating} - {reviews.length} reviews</div>
+}       <div className="ratingAndReviewAmount">★{spotObject.avgStarRating} - {reviews.length} reviews</div>
         <AllReviews/>
     </div>
     )

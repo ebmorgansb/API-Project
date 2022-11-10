@@ -75,9 +75,10 @@ export const createSpotThunk = (spot) => async (dispatch) => {
    )
    if (image.ok) {
     const addImage = await image.json()
-    newSpot[previewImage] = addImage.url
-    console.log('newSpot with img', newSpot)
+    newSpot.previewImage = addImage.url
+    newSpot.avgRating = 0
     dispatch(createSpotAction(newSpot));
+    return newSpot
    }
  }
 };
@@ -88,7 +89,6 @@ export const getSpotsThunk = () => async (dispatch) => {
   const res = await fetch(`/api/spots`);
   // if (res.ok) {
     const data = await res.json();
-    console.log('Fetch Spots Thunk', data)
     dispatch(receiveSpots(data.Spots));
   // }
 };
@@ -98,7 +98,6 @@ export const getSpotThunk = (spotId) => async (dispatch) => {
   const res = await fetch(`/api/spots/${spotId}`);
   if (res.ok) {
     const spot = await res.json();
-    console.log('Thunk spot data', spot)
     dispatch(receiveSpot(spot));
   }
 };
@@ -113,8 +112,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 
 //Thunk for editting a spot
 export const editSpotThunk = (spotId, payload) => async (dispatch) => {
-  console.log('edit spot thunk--------------------')
-  const { address, city, state, country, name, description, price } = payload
+  const { address, city, state, country, name, description, price, previewImage } = payload
   const res = await csrfFetch(`/api/spots/${spotId}`, {method: 'PUT',
   body: JSON.stringify({
     address,
@@ -123,14 +121,13 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
     country,
     name,
     description,
-    price
+    price,
+    previewImage
   })});
-  console.log(res, 'where is res')
   if (res.ok) {
     const editSpot = await res.json()
-    console.log(editSpot, 'editspot in the reducer')
     dispatch(editSpotAction(editSpot));
-
+    return editSpot
   }
 };
 
@@ -150,16 +147,16 @@ export default function spotReducer(state = {}, action){
         newState[action.spot.id] = action.spot
         return newState
       case CREATEONESPOT:
-        newState = {...state, ...action.spot}
+        newState = {...state}
+        newState[action.spot.id] = action.spot
         return newState
       case DELETESPOT:
       newState = {...state}
-      delete newState.action.spotId
+      delete newState[action.spotId]
         return newState
       case EDITSPOT:
       newState = {...state}
-      // const spotId = action.spot.id
-      newState[action.spot.id] = action.spot
+      newState[action.spot.id] = {...newState[action.spot.id], ...action.spot}
       return newState
     default:
       return state

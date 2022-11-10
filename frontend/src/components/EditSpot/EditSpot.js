@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { editSpotThunk } from "../../store/spot"
+import { getSpotThunk } from "../../store/spot"
 import { useParams } from "react-router-dom"
 import './editSpot.css'
 
@@ -19,7 +20,7 @@ export default function EditSpot({setShowModal}) {
     const [previewImage, setPreviewImage] = useState('')
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
 
@@ -31,10 +32,17 @@ export default function EditSpot({setShowModal}) {
             name,
             description,
             price,
+            previewImage
         };
 
-        setShowModal(false)
-        dispatch(editSpotThunk(spotId, payload))
+
+        let newSpot = await dispatch(editSpotThunk(spotId, payload))
+
+        if (newSpot) {
+          //The below code is fetching the old Spot
+          await dispatch(getSpotThunk(newSpot.id))
+          setShowModal(false)
+        }
     }
 
     return (

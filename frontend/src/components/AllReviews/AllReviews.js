@@ -11,21 +11,18 @@ import { NavLink } from 'react-router-dom'
 export default function AllReviews () {
 
   const [showModal, setShowModal] = useState(false);
-  
+
   let {spotId} = useParams()
   spotId = parseInt(spotId)
-  console.log(spotId, 'AllReview comp')
   const dispatch = useDispatch()
   let reviews = []
   // let reviewImages = []
   const sessionUserObject = useSelector(state => state.session.user);
   const reviewsObject = useSelector(state => state.review)
-  console.log('reviews comp', reviewsObject)
   let totalRating = 0
   if (reviewsObject) {
     reviews = Object.values(reviewsObject)
-    // console.log('reviewsImg', reviews[0]?.ReviewImages[0].url)
-    console.log('reviews', reviews)
+    console.log('Reviews Array', reviews)
     reviews.forEach(review => {
       totalRating += review.stars
     })
@@ -47,7 +44,7 @@ return (
           <div className='ratingAndTotalReviews'>
           </div>
           <div>
-          <button onClick={() => setShowModal(true)}>Create a Review</button>
+          <button className='crudButton' onClick={() => setShowModal(true)}>Create a Review</button>
           </div>
         </div>
         {showModal && (
@@ -58,13 +55,13 @@ return (
     <div className='allReviews'>
     {reviews.map(review => (
       <div  className='oneReview'>
-         <div>{reviews[0]?.User.firstName}</div>
-        <div>{reviews[0]?.createdAt.substr(0, 7)}</div>
+         <div className='reviewName'>{review.User?.firstName}</div>
+        <div className='reviewDate'>{review.createdAt.substr(0, 7)}</div>
         <div>{review.review}</div>
-        {sessionUserObject?.id === review.User.id &&
+        {sessionUserObject?.id === review.User?.id &&
         <div>
         <NavLink to={`/spots/${spotId}`}>
-        <button onClick={()=> {dispatch(deleteReviewThunk(review.id))}}>Delete Review</button>
+        <button className='crudButton' onClick={()=> {dispatch(deleteReviewThunk(review.id))}}>Delete Review</button>
         </NavLink>
         </div>
         }

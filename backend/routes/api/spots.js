@@ -324,7 +324,7 @@ router.put('/:spotId', validateNewSpot, async (req, res) => {
     })
   }
 
-  updateSpot.set({
+  updateSpot.update({
     address,
     city,
     state,

@@ -8,6 +8,7 @@ import './Navigation.css';
 import {useHistory} from 'react-router-dom'
 import { Modal } from '../../context/Modal';
 import CreateSpot from '../CreateSpot/CreateSpot';
+import favicon from '../../allImages/favicon.png';
 
 function Navigation({ isLoaded }){
   const [showModal, setShowModal] = useState(false);
@@ -36,7 +37,7 @@ function Navigation({ isLoaded }){
     <div className='topBar'>
       <div>
         <NavLink exact to="/">
-        <img className='imgLogo' src='./favicon.png'></img>
+        <img className='imgLogo' src={favicon}></img>
         </NavLink>
       </div>
       <div>
@@ -44,7 +45,7 @@ function Navigation({ isLoaded }){
     <button className='becomeHost' onClick={() => setShowModal(true)}>Become a Host</button>
     {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateSpot/>
+          <CreateSpot setShowModal={setShowModal} />
         </Modal>
       )}
       </div>
