@@ -19,6 +19,7 @@ export default function AllReviews () {
   // let reviewImages = []
   const sessionUserObject = useSelector(state => state.session.user);
   const reviewsObject = useSelector(state => state.review)
+  const spotObject = useSelector(state => state.spot[spotId])
   let totalRating = 0
   if (reviewsObject) {
     reviews = Object.values(reviewsObject)
@@ -38,12 +39,12 @@ export default function AllReviews () {
 if (!reviewsObject) return null;
 
 return (
-
+  <>
       <div>
-        <div className='ratingAndCreate'>
-          <div className='ratingAndTotalReviews'>
-          </div>
-          <div>
+          {/* <div className='ratingAndTotalReviews'>
+          </div> */}
+          <div className='buttonAndRating'>
+          <div>★{spotObject.avgStarRating}  · {reviews.length} reviews</div>
           <button className='crudButton' onClick={() => setShowModal(true)}>Create a Review</button>
           </div>
         </div>
@@ -68,6 +69,6 @@ return (
       </div>
           ))}
     </div>
-    </div>
+</>
 )
 }

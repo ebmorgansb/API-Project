@@ -8,6 +8,8 @@ import { deleteSpotThunk } from "../../store/spot"
 import AllReviews from '../AllReviews/AllReviews'
 import EditSpot from '../EditSpot/EditSpot'
 import './oneSpot.css'
+import gitLogo from '../../allImages/github-logo.png';
+import inLogo from '../../allImages/in.png';
 import { FaBeer } from 'react-icons/fa'
 
 export default function OneSpot() {
@@ -44,11 +46,11 @@ export default function OneSpot() {
         }
 
     return (
+        <>
     <div className="allOneSpot">
         <h2 className="spotTitle">{spotObject.name}</h2>
         <div>
-            <div>★{spotObject.avgStarRating} - {reviews.length} reviews</div>
-            <div>{spotObject.city}, {spotObject.state}, {spotObject.country}</div>
+            <div className="location">★{spotObject.avgStarRating} · {reviews.length} reviews  · {spotObject.city}, {spotObject.state}, {spotObject.country}</div>
         </div>
 
         <div className="smallAndBigImgs">
@@ -137,8 +139,23 @@ export default function OneSpot() {
             <button className='crudButton' onClick={()=> {dispatch(deleteSpotThunk(spotId))}}>Delete Spot</button>
             </NavLink>
             </div>
-}       <div className="ratingAndReviewAmount">★{spotObject.avgStarRating} - {reviews.length} reviews</div>
+        }
         <AllReviews/>
     </div>
+        <footer className='footer'>
+          <div>
+          An AirBnB clone by Evan Morgan
+          </div>
+          <div>
+          <a  target="_blank" href='https://github.com/ebmorgansb'>
+            <img className='gitLogo'  alt='githubLogo' src={gitLogo}></img>
+
+          </a>
+          <a  target="_blank" href='https://www.linkedin.com/in/evan-morgan-9a2723132/'>
+            <img className='inLogo' alt='inLogo' src={inLogo}></img>
+          </a>
+          </div>
+        </footer>
+        </>
     )
 }

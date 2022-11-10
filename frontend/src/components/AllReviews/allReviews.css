@@ -45,3 +45,10 @@
     font-size: large;
     padding: 3px;
 }
+
+.buttonAndRating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

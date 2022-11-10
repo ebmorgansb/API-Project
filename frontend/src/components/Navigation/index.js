@@ -13,9 +13,6 @@ import favicon from '../../allImages/favicon.png';
 function Navigation({ isLoaded }){
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()
-  // function handleClick() {
-  //   history.push("/createSpot");
-  // }
 
   const sessionUser = useSelector(state => state.session.user);
 
