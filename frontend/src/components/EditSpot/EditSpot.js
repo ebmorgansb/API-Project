@@ -17,7 +17,6 @@ export default function EditSpot({setShowModal}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [previewImage, setPreviewImage] = useState('')
 
 
     const handleSubmit = async (e) => {
@@ -32,7 +31,6 @@ export default function EditSpot({setShowModal}) {
             name,
             description,
             price,
-            previewImage
         };
 
 
@@ -134,19 +132,6 @@ export default function EditSpot({setShowModal}) {
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-        </div>
-        </label>
-        </div>
-        <div className="oneFormInput">
-        <label>
-        Preview Image
-        <div className="formPadding">
-        <input
-          type="text"
-          value={previewImage}
-          onChange={(e) => setPreviewImage(e.target.value)}
           required
         />
         </div>

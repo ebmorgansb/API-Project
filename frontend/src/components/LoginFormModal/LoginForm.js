@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import './loginForm.css'
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
@@ -21,6 +23,7 @@ function LoginForm() {
   };
 
   return (
+    
     <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
@@ -45,7 +48,13 @@ function LoginForm() {
           required
         />
       </label>
+      <div>
       <button type="submit">Log In</button>
+      </div>
+      <div >
+      <button  type="submit"
+      onClick={()=>{setCredential("Demo-lition");setPassword("password")}}>Demo Login</button>
+      </div>
     </form>
   );
 }
