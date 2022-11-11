@@ -32,10 +32,11 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='topBar'>
-      <div>
+      <div className='logoAndTitle'>
         <NavLink exact to="/">
         <img className='imgLogo' src={favicon}></img>
         </NavLink>
+        <h1 className='title'>AirBeeBs</h1>
       </div>
       <div>
       {isLoaded && sessionLinks}

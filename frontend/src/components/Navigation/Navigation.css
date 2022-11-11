@@ -22,3 +22,14 @@
     font-size: 15px;
     color:rgba(12, 11, 11, 0.8)
 }
+
+.logoAndTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    padding-left: 10px;
+    color: rgb(8, 2, 2);
+}

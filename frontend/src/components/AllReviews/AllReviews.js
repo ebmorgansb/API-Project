@@ -56,9 +56,9 @@ return (
     <div className='allReviews'>
     {reviews.map(review => (
       <div  className='oneReview'>
-         <div className='reviewName'>{review.User?.firstName}</div>
+        <div className='reviewName'>{review.User?.firstName}</div>
         <div className='reviewDate'>{review.createdAt.substr(0, 7)}</div>
-        <div>{review.review}</div>
+        <div className='reviewDescrip'>{review.review}</div>
         {sessionUserObject?.id === review.User?.id &&
         <div>
         <NavLink to={`/spots/${spotId}`}>

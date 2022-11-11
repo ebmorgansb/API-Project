@@ -87,10 +87,10 @@ export const createSpotThunk = (spot) => async (dispatch) => {
 //Thunk for getting all spots
 export const getSpotsThunk = () => async (dispatch) => {
   const res = await fetch(`/api/spots`);
-  // if (res.ok) {
+  if (res.ok) {
     const data = await res.json();
     dispatch(receiveSpots(data.Spots));
-  // }
+  }
 };
 
 //Thunk for getting a spot
