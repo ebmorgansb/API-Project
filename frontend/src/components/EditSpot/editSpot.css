@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 35px;
+    padding-top: 0px;
+    padding-right: 35px;
+    padding-bottom: 35px;
+    padding-left: 35px;
     width: 550px;
     height: 625px;
     font-family: 'Times New Roman', Times, serif;
@@ -36,4 +39,15 @@
     width: 80%;
     height: 100px;
     resize: none;
+}
+
+.errors {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:end;
+}
+
+.oneError {
+    font-size: 10px;
 }

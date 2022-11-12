@@ -1,13 +1,10 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
-import { createSpot } from "../../store/spot"
-import { useHistory } from "react-router-dom"
 import { createSpotThunk } from "../../store/spot"
 import './createSpot.css'
 
 export default function CreateSpot({setShowModal}) {
     const dispatch = useDispatch()
-    const history = useHistory()
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -17,7 +14,6 @@ export default function CreateSpot({setShowModal}) {
     const [price, setPrice] = useState('');
     const [previewImage, setPreviewImage] = useState('')
     const [errors, setErrors] = useState([]);
-    // const spot = useSelector(state => state.spot)
     const sessUser = useSelector(state => state.session.user)
 
 
@@ -34,7 +30,7 @@ export default function CreateSpot({setShowModal}) {
 
 
       setErrors(errors)
-    },[price,country, address, city, state, country, name, description, sessUser])
+    },[price, address, city, state, country, name, description, sessUser])
 
     const handleSubmit = async (e) => {
         e.preventDefault();

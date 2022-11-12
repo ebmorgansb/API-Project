@@ -13,6 +13,14 @@ export default function CreateReviewForm({setShowModal}) {
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
     const {spotId} = useParams()
+    const [errors, setErrors] = useState([]);
+
+    useEffect(()=>{
+      const errors = []
+      if(!review) errors.push("Review text is required")
+      if(!stars) errors.push("Stars must be an integer from 1 to 5")
+      setErrors(errors)
+    },[review, stars])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,7 +40,11 @@ export default function CreateReviewForm({setShowModal}) {
     }
 
     return (
-
+      <>
+      <ul>
+      {errors.map((error) => (
+        <li key={error}> {error}</li>))}
+      </ul>
     <div className="fullReviewForm">
       <h2>Add a Review</h2>
      <form  onSubmit={handleSubmit}>
@@ -69,5 +81,6 @@ export default function CreateReviewForm({setShowModal}) {
         <button className="reviewSubmitButton" type='submit'>Submit</button>
       </form>
     </div>
+    </>
     )
 }

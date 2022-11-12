@@ -1,9 +1,9 @@
-import { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { useDispatch } from "react-redux"
 import { editSpotThunk } from "../../store/spot"
 import { getSpotThunk } from "../../store/spot"
 import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import './editSpot.css'
 
 export default function EditSpot({setShowModal}) {
@@ -17,6 +17,21 @@ export default function EditSpot({setShowModal}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [errors, setErrors] = useState([]);
+    const sessUser = useSelector(state => state.session.user)
+
+    useEffect(()=>{
+      const errors = []
+      if(!sessUser) errors.push("Must be logged in to Host a spot")
+      if(!address) errors.push("Street address is required")
+      if(!city) errors.push("City is required")
+      if(!state) errors.push("State is required")
+      if(!country) errors.push("Country is required")
+      if(name.length > 50) errors.push("Name must be less than 50 characters")
+      if(!description) errors.push("Description is required")
+      if(price < 0 || !price) errors.push("Price per day is required")
+      setErrors(errors)
+    },[price,country, address, city, state, country, name, description, sessUser])
 
 
     const handleSubmit = async (e) => {
@@ -44,6 +59,11 @@ export default function EditSpot({setShowModal}) {
     }
 
     return (
+      <>
+      <ul className="errors">
+      {errors.map((error) => (
+        <li className="oneError" key={error}> {error}</li>))}
+      </ul>
     <div className="fullSpotForm">
       <h2>Edit your Spot</h2>
      <form onSubmit={handleSubmit}>
@@ -141,5 +161,6 @@ export default function EditSpot({setShowModal}) {
         <button className="spotSubmitButton" type='submit'>Submit</button>
       </form>
       </div>
+      </>
     )
 }
