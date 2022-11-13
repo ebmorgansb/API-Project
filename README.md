@@ -10,7 +10,7 @@ Database Schema
 Features List
 Redux State Shape
 
-<!-- ## Production -->
+## Check out my live AirBeeBs site:
 [**https://airbnbevan-sb.herokuapp.com/**](https://airbnbevan-sb.herokuapp.com/)
 
 
@@ -116,6 +116,6 @@ To get a local copy up and running follow these simple example steps.
 
 ## Get in touch!
 
-- ![GitHub](https://github.com/ebmorgansb)
-- ![Linkedin](https://www.linkedin.com/in/evan-morgan-9a2723132/)
+- [GitHub](https://github.com/ebmorgansb)
+- [Linkedin](https://www.linkedin.com/in/evan-morgan-9a2723132/)
 
