@@ -4,6 +4,9 @@
 
 AirBeebs is a Full Stack web application inspired by AirBnB. On Airbeebs you can find unique experiences and locations that you will never forget.
 
+## Check out my live AirBeeBs site:
+[**https://airbnbevan-sb.herokuapp.com/**](https://airbnbevan-sb.herokuapp.com/)
+
 ## Project Wiki
 -[API Routes](https://github.com/ebmorgansb/Airbnb-Project/blob/main/docs/API-docs-AirBnB.md)
 
@@ -12,12 +15,6 @@ AirBeebs is a Full Stack web application inspired by AirBnB. On Airbeebs you can
 -[Feature List](https://github.com/ebmorgansb/Airbnb-Project/wiki/Feature-List)
 
 -[Redux Shape](https://github.com/ebmorgansb/Airbnb-Project/wiki/Redux-Shape)
-
-
-
-## Check out my live AirBeeBs site:
-[**https://airbnbevan-sb.herokuapp.com/**](https://airbnbevan-sb.herokuapp.com/)
-
 
 #### Frameworks, Platforms, & Libraries:
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
