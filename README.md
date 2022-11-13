@@ -5,10 +5,15 @@
 AirBeebs is a Full Stack web application inspired by AirBnB. On Airbeebs you can find unique experiences and locations that you will never forget.
 
 ## Project Wiki
-API Documentation
-Database Schema
-Features List
-Redux State Shape
+-[API Routes](https://github.com/ebmorgansb/Airbnb-Project/blob/main/docs/API-docs-AirBnB.md)
+
+-[Database Schema](https://github.com/ebmorgansb/Airbnb-Project/wiki/Database-Schema)
+
+-[Feature List](https://github.com/ebmorgansb/Airbnb-Project/wiki/Feature-List)
+
+-[Redux Shape](https://github.com/ebmorgansb/Airbnb-Project/wiki/Redux-Shape)
+
+
 
 ## Check out my live AirBeeBs site:
 [**https://airbnbevan-sb.herokuapp.com/**](https://airbnbevan-sb.herokuapp.com/)
