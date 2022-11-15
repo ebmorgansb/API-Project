@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage({setShowModal}) {
+function SignupForm({setShowModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -127,4 +127,4 @@ function SignupFormPage({setShowModal}) {
   );
 }
 
-export default SignupFormPage;
+export default SignupForm;

@@ -26,7 +26,6 @@ function LoginFormPage({setShowModal}) {
     .then(() => {
       console.log('setshowmodal running')
       setShowModal(false)
-
     }
     )
       .catch(async (res) => {

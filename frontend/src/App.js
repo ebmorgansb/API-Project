@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
+import SignupForm from "./components/SignupForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/Home/Home'
@@ -22,7 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/signup" exact>
-            <SignupFormPage />
+            <SignupForm />
           </Route>
           <Route path="/editSpotty/:spotId" exact>
             <EditSpot/>
