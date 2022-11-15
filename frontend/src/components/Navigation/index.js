@@ -42,7 +42,7 @@ function Navigation({ isLoaded }){
         </NavLink>
         <h1 className='title'>AirBeeBs</h1>
       </div>
-      <div>
+      <div className='createAndCool'>
       {isLoaded && (<ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal}/>)}
       { showModal && <Modal onClose={() => setShowModal(false)}>
         {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} /> }

@@ -20,6 +20,7 @@ function LoginFormPage() {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
+    .then(() => setShowModal(false))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

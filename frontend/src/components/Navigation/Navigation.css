@@ -19,7 +19,10 @@
     background-color: transparent;
     border: none;
     font-weight: bold;
-    margin: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
     font-size: 15px;
     color:rgba(12, 11, 11, 0.8)
 }
@@ -33,4 +36,39 @@
 .title {
     padding-left: 10px;
     color: rgb(8, 2, 2);
+}
+
+.coolButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 10px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    background-color: white;
+    height: 200px;
+    right: 0;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 4rem;
+    border-radius: 5px;
+    box-shadow: 5px 1px 1px rgb(0 0 0 / 10%);
+}
+
+.createAndCool {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    width: 18%;
 }
