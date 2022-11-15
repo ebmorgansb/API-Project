@@ -44,8 +44,6 @@ if (!reviewsObject) return null;
 return (
   <>
       <div>
-          {/* <div className='ratingAndTotalReviews'>
-          </div> */}
           <div className='buttonAndRating'>
           <div>★{avgRating}  · {reviews.length} reviews</div>
           <button className='crudButton2' onClick={() => setShowModal(true)}>Create a Review</button>

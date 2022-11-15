@@ -130,6 +130,7 @@ export default function OneSpot() {
     <div className="spotDescriptionTopBorder">{spotObject.description}</div>
         <AllReviews/>
     </div>
+
     {sessionUserObject?.id  === spotObject.ownerId &&
             <div className="editDeleteSpot">
             <button className='crudButton2' onClick={() => setShowModal(true)}>Edit your spot</button>
