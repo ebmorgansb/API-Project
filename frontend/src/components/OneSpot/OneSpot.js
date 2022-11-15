@@ -45,6 +45,7 @@ export default function OneSpot() {
             }
         }
 
+
     return (
         <>
     <div className="allOneSpot">

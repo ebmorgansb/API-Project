@@ -24,9 +24,9 @@ function App() {
           <Route path="/signup" exact>
             <SignupForm />
           </Route>
-          <Route path="/editSpotty/:spotId" exact>
+          {/* <Route path="/editSpotty/:spotId" exact>
             <EditSpot/>
-          </Route>
+          </Route> */}
           <Route path='/' exact>
             <Home/>
           </Route>

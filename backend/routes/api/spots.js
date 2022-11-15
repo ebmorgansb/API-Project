@@ -284,6 +284,9 @@ let numReviewz = reviewsArr.length
   avgRating = avgRating.toFixed(2)
   theRealSpot.numReviews = numReviewz
   theRealSpot.avgStarRating = avgRating
+  if (numReviewz === 0) {
+    theRealSpot.avgStarRating = 'New'
+  }
   // theRealSpot.Owner = newUser
 // }
 // else{}
