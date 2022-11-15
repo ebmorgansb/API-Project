@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from 'react-redux'
+ import {useDispatch, useSelector} from 'react-redux'
 import { getReviewsThunk } from '../../store/review'
 import CreateReviewForm from '../CreateReviewForm/CreateReviewForm'
 import {useEffect, useState} from 'react'
@@ -30,6 +30,9 @@ export default function AllReviews () {
   }
   let avgRating = totalRating/reviews.length
   avgRating = avgRating.toFixed(2)
+  if (reviews.length === 0) {
+    avgRating = 'New'
+  }
 
 
   useEffect(() => {
@@ -44,7 +47,7 @@ return (
           {/* <div className='ratingAndTotalReviews'>
           </div> */}
           <div className='buttonAndRating'>
-          <div>★{spotObject.avgStarRating}  · {reviews.length} reviews</div>
+          <div>★{avgRating}  · {reviews.length} reviews</div>
           <button className='crudButton2' onClick={() => setShowModal(true)}>Create a Review</button>
           </div>
         </div>
