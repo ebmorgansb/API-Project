@@ -2,7 +2,9 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
+    /* align-items: center; */
+    justify-content: center;
+    border-bottom: 1px solid black;
 }
 
 .oneReview {
@@ -12,11 +14,12 @@
     justify-content:flex-start;
     margin: 2% 2%;
     padding: 2em;
-    /* height: 10%; */
+    height: auto;
     width: 30%;
-    border: 1px solid black;
     border-radius: 25px;
-    max-height: 135px;
+    /* max-height: 180px; */
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+
 }
 
 .ratingAndTotalReviews {
@@ -32,9 +35,21 @@
 }
 
 .crudButton {
+    background-color: rgba(199, 14, 14);
+    color: white;
+    border: 1px solid black;
+    padding: 12px;
+    /* margin-top: 15px; */
+    margin: 8px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.crudButton2 {
     background-color: hsl(0, 0%, 50%, .04);
     border: 1px solid black;
     padding: 12px;
+    /* margin-top: 15px; */
     margin: 8px;
     border-radius: 10px;
     font-size: 16px;

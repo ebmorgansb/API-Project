@@ -14,8 +14,8 @@ import SignupFormPage from '../SignupFormPage'
 import LoginForm from '../LoginFormModal/LoginForm';
 
 function Navigation({ isLoaded }){
-  const [showModal, setShowModal] = useState(true)
-  const [showCreate, setShowCreate] = useState(true)
+  const [showModal, setShowModal] = useState(false)
+  const [showCreate, setShowCreate] = useState(false)
   const [login, setLogin] = useState(true)
   const history = useHistory()
 

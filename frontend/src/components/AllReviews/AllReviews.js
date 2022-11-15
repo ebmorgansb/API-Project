@@ -45,7 +45,7 @@ return (
           </div> */}
           <div className='buttonAndRating'>
           <div>★{spotObject.avgStarRating}  · {reviews.length} reviews</div>
-          <button className='crudButton' onClick={() => setShowModal(true)}>Create a Review</button>
+          <button className='crudButton2' onClick={() => setShowModal(true)}>Create a Review</button>
           </div>
         </div>
         {showModal && (

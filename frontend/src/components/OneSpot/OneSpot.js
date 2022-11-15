@@ -127,9 +127,11 @@ export default function OneSpot() {
 
 
     <div className="spotDescriptionTopBorder">{spotObject.description}</div>
-        {sessionUserObject?.id  === spotObject.ownerId &&
+        <AllReviews/>
+    </div>
+    {sessionUserObject?.id  === spotObject.ownerId &&
             <div className="editDeleteSpot">
-            <button className='crudButton' onClick={() => setShowModal(true)}>Edit your spot</button>
+            <button className='crudButton2' onClick={() => setShowModal(true)}>Edit your spot</button>
             {showModal && (
             <Modal onClose={() => setShowModal(false)}>
             <EditSpot setShowModal={setShowModal}/>
@@ -140,8 +142,6 @@ export default function OneSpot() {
             </NavLink>
             </div>
         }
-        <AllReviews/>
-    </div>
         <footer className='footer'>
           <div>
           An AirBnB clone by Evan Morgan

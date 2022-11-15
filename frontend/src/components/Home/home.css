@@ -34,8 +34,9 @@
 
 
 .homeDiv {
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
+    box-sizing: border-box;
 }
 
 /* html {
@@ -51,12 +52,14 @@ body {
 }
 html { height: 100%; }
 body {
-    min-height:100%;
-    position:relative;
-    padding-bottom: 42px;
+margin: 0px;
+position: relative;
 }
 .footer {
+    display: fixed;
     position: fixed;
     left: 0 ; right: 0; bottom: 0;
     height:42px;
+    box-sizing: border-box;
+    max-height: 42px;
 }
