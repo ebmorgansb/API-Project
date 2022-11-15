@@ -37,13 +37,10 @@
     width: 80%;
     height: 100px;
     resize: none;
+    border-radius: 10px;
 }
 
 #modal-content {
     background-color: white;
     border-radius: 10px;
 }
-
-/* .fontForm {
-    font-family: Arial, Helvetica, sans-serif;
-} */

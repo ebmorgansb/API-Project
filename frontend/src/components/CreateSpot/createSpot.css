@@ -32,8 +32,15 @@
     width: 80%;
     height: 100px;
     resize: none;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 .formPadding {
     padding: 3px;
+}
+
+.actualInput {
+    border-radius: 4px;
+    border: 1px solid black;
 }

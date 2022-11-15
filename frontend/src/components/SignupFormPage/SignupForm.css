@@ -1,0 +1,44 @@
+.fullSignupForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 35px;
+    width: 450px;
+    height: 420px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.signupSubmitButton {
+    width: 100%;
+    height: 50px;
+    border-radius: 2px;
+    background-color: rgb(215, 4, 102);
+    color: white;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.formInputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.formPadding {
+    padding: 4px;
+}
+
+.actualInput {
+    border-radius: 4px;
+}
+
+.textAreaInput {
+    width: 80%;
+    height: 100px;
+    resize: none;
+}
+
+#modal-content {
+    background-color: white;
+    border-radius: 10px;
+}

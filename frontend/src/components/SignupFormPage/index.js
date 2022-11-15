@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({setShowModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -23,6 +23,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
+      .then(setShowModal(false))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -32,66 +33,97 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
+    <div className="fullSignupForm">
+    <h2>Sign Up!</h2>
+    <form onSubmit={handleSubmit}>
+      <div className="formInputs">
+      <div className="oneFormInput">
       <label>
         Email
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
+      <div className="oneFormInput">
       <label>
         Username
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
+      <div className="oneFormInput">
       <label>
         Password
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
+      <div className="oneFormInput">
       <label>
         Confirm Password
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
+      <div className="oneFormInput">
       <label>
         First Name
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
+      <div className="oneFormInput">
       <label>
         Last Name
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
+        </div>
       </label>
-      <button type="submit">Sign Up</button>
+      </div>
+      </div>
+      <button className="signupSubmitButton" type="submit">Sign Up</button>
     </form>
+    </div>
+    </>
   );
 }
 

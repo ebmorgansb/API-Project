@@ -72,7 +72,7 @@ export default function EditSpot({setShowModal}) {
      <label>
         Address
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -85,7 +85,7 @@ export default function EditSpot({setShowModal}) {
      <label>
         City
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
@@ -98,7 +98,7 @@ export default function EditSpot({setShowModal}) {
         <label>
         State
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
@@ -111,7 +111,7 @@ export default function EditSpot({setShowModal}) {
         <label>
         Country
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
@@ -124,7 +124,7 @@ export default function EditSpot({setShowModal}) {
         <label>
         Name
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -148,7 +148,7 @@ export default function EditSpot({setShowModal}) {
         <label>
         Price
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}

@@ -9,26 +9,30 @@ import {useHistory} from 'react-router-dom'
 import { Modal } from '../../context/Modal';
 import CreateSpot from '../CreateSpot/CreateSpot';
 import favicon from '../../allImages/favicon.png';
+// import SignUpFormModal from '../SignUpModal/SignUpModal';
+import SignupFormPage from '../SignupFormPage'
+import LoginForm from '../LoginFormModal/LoginForm';
 
 function Navigation({ isLoaded }){
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true)
+  const [showCreate, setShowCreate] = useState(true)
+  const [login, setLogin] = useState(true)
   const history = useHistory()
 
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
-    );
-  }
+  // let sessionLinks;
+  // if (sessionUser) {
+  //   sessionLinks = (
+  //     <ProfileButton user={sessionUser} />
+  //   );
+  // } else {
+  //   sessionLinks = (
+  //     <>
+  //       <LoginFormModal />
+  //     </>
+  //   );
+  // }
 
   return (
     <div className='topBar'>
@@ -39,11 +43,14 @@ function Navigation({ isLoaded }){
         <h1 className='title'>AirBeeBs</h1>
       </div>
       <div>
-      {isLoaded && sessionLinks}
-    <button className='becomeHost' onClick={() => setShowModal(true)}>Become a Host</button>
-    {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <CreateSpot setShowModal={setShowModal} />
+      {isLoaded && (<ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal}/>)}
+      { showModal && <Modal onClose={() => setShowModal(false)}>
+        {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} /> }
+      </Modal>}
+    <button className='becomeHost' onClick={() => setShowCreate(true)}>Become a Host</button>
+    {showCreate && (
+        <Modal onClose={() => setShowCreate(false)}>
+          <CreateSpot setShowCreate={setShowCreate} />
         </Modal>
       )}
       </div>

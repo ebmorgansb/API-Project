@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { createSpotThunk } from "../../store/spot"
 import './createSpot.css'
 
-export default function CreateSpot({setShowModal}) {
+export default function CreateSpot({setShowCreate}) {
     const dispatch = useDispatch()
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -49,7 +49,7 @@ export default function CreateSpot({setShowModal}) {
 
         let newSpot = await dispatch(createSpotThunk(payload))
         if (newSpot) {
-          setShowModal(false)
+          setShowCreate(false)
         }
 
 
@@ -69,7 +69,7 @@ export default function CreateSpot({setShowModal}) {
      <label>
         Address
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -82,7 +82,7 @@ export default function CreateSpot({setShowModal}) {
      <label>
         City
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
@@ -95,7 +95,7 @@ export default function CreateSpot({setShowModal}) {
         <label>
         State
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
@@ -108,7 +108,7 @@ export default function CreateSpot({setShowModal}) {
         <label>
         Country
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
@@ -121,7 +121,7 @@ export default function CreateSpot({setShowModal}) {
         <label>
         Name
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -145,7 +145,7 @@ export default function CreateSpot({setShowModal}) {
         <label>
         Price
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
@@ -158,7 +158,7 @@ export default function CreateSpot({setShowModal}) {
         <label>
         Preview Image
         <div className="formPadding">
-        <input
+        <input className="actualInput"
           type="text"
           value={previewImage}
           onChange={(e) => setPreviewImage(e.target.value)}
