@@ -31,28 +31,29 @@ function ProfileButton({ user, setLogin, setShowModal }) {
   return (
     <>
       <button className='coolButton' onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+        {/* <i className="fas fa-user-circle" /> */}
+        <i className="fa-solid fa-bars" />
       </button>
       {showMenu && ( user ?
        ( <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
-            <button onClick={logout}>Log Out</button>
+            <button className="hamButton" onClick={logout}>Log Out</button>
         </ul>) :
-        <ul className="profile-dropdown">
-          <li>
-            <button onClick={() => {
+        <div className="profile-dropdown">
+          <div>
+            <button className="hamButton" onClick={() => {
               setLogin(true)
               setShowModal(true)
             }}>Log in</button>
-          </li>
-          <li>
-            <button onClick={() => {
+          </div>
+          <div>
+            <button className="hamButton" onClick={() => {
               setLogin(false)
               setShowModal(true)
             }}>Sign Up</button>
-          </li>
-        </ul>
+          </div>
+        </div>
       )}
     </>
   );
