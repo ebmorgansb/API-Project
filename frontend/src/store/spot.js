@@ -64,8 +64,10 @@ export const createSpotThunk = (spot) => async (dispatch) => {
 
  if (response.ok) {
    const newSpot = await response.json();
+   console.log('newSpot in the thunk', newSpot)
    const spotId = newSpot.id
-   const image = await csrfFetch(`api/spots/${spotId}/images`, {
+   console.log('spotId in create', spotId)
+   const image = await csrfFetch(`/api/spots/${spotId}/images`, {
    method: 'POST',
     body: JSON.stringify({
       url: previewImage,

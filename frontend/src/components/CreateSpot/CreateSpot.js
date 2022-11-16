@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 import { createSpotThunk } from "../../store/spot"
+import { getSpotThunk } from "../../store/spot"
 import './createSpot.css'
 
 export default function CreateSpot({setShowCreate}) {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -50,8 +53,9 @@ export default function CreateSpot({setShowCreate}) {
         let newSpot = await dispatch(createSpotThunk(payload))
         if (newSpot) {
           setShowCreate(false)
+          // await dispatch(getSpotThunk(newSpot.id))
+          // history.push(`/api/spots/${newSpot.id}`)
         }
-
 
     }
 

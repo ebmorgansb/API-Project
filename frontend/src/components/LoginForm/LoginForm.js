@@ -31,39 +31,53 @@ function LoginForm({setShowModal}) {
   };
 
   return (
-
-    <form onSubmit={handleSubmit}>
+    <>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
+      <div className="fullLoginForm">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+      <div className="formInputs">
+      <div className="oneFormInput">
       <label>
         Username or Email
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
+      <div className="oneFormInput">
       <label>
         Password
-        <input
+        <div className="formPadding">
+        <input className="actualInput"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        </div>
       </label>
+      </div>
       <div>
-      <button type="submit">Log In</button>
+      <button  className='loginSubmitButton' type="submit">Log In</button>
       </div>
       <div >
-      <button  type="submit"
+      <button className='loginSubmitButton' type="submit"
       onClick={()=>{setCredential("Demo-lition");setPassword("password")}}>Demo Login</button>
       </div>
+      </div>
     </form>
+    </div>
+    </>
   );
 }
 

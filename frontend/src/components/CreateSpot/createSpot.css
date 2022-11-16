@@ -29,9 +29,9 @@
 }
 
 .textAreaInput {
-    width: 80%;
+    width: 100%;
     height: 100px;
-    resize: none;
+    /* resize: none; */
     border-radius: 10px;
     border: 1px solid black;
 }
