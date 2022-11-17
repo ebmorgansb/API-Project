@@ -30,7 +30,7 @@ function Navigation({ isLoaded }){
         ></i>
         {/* </div> */}
         </NavLink>
-        <h1 className='title'>AirBeeBs</h1>
+        <h1 className='titleNav'>AirBeeBs</h1>
       </div>
       <div className='createAndCool'>
       {isLoaded && (<ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal}/>)}

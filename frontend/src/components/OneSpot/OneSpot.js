@@ -5,6 +5,7 @@ import { Modal } from "../../context/Modal"
 import { NavLink } from "react-router-dom"
 import { getSpotThunk } from "../../store/spot"
 import { deleteSpotThunk } from "../../store/spot"
+import { clearSpotAction } from "../../store/spot"
 import AllReviews from '../AllReviews/AllReviews'
 import EditSpot from '../EditSpot/EditSpot'
 import './oneSpot.css'
@@ -20,7 +21,11 @@ export default function OneSpot() {
 
     useEffect(() => {
         dispatch(getSpotThunk(spotId))
-      }, [dispatch, spotId])
+
+        return (() => dispatch(clearSpotAction()))
+    }
+     ,[dispatch, spotId])
+
 
         const spotObject = useSelector(state => state.spot[spotId])
         const sessionUserObject = useSelector(state => state.session.user);
@@ -144,7 +149,7 @@ export default function OneSpot() {
             </NavLink>
             </div>
         }
-        <footer className='footer'>
+        <footer className='footer2'>
           <div>
           An AirBnB clone by Evan Morgan
           </div>

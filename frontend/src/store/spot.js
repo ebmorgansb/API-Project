@@ -5,6 +5,13 @@ const CREATEONESPOT = 'spot/createSpot'
 const RECEIVE = 'spots/getAllSpots'
 const DELETESPOT = 'spots/deleteSpot'
 const EDITSPOT = 'spots/editSpot'
+const CLEARSPOT = 'spot/clearSpot'
+
+export const clearSpotAction = () => {
+  return {
+    type: CLEARSPOT,
+  };
+};
 
 export const receiveSpots = (spots) => {
   return {
@@ -135,11 +142,23 @@ export const editSpotThunk = (spotId, payload) => async (dispatch) => {
 
 
 
+// const CLEARSPOT = 'spot/clearSpot'
+
+// export const clearSpotAction = () => {
+//   return {
+//     type: CLEARSPOT,
+//
+//   };
+// };
+
+
 //Reducer
 
 export default function spotReducer(state = {}, action){
     let newState = {}
   switch(action.type){
+    case CLEARSPOT:
+      return newState
     case RECEIVE:
       action.spots.forEach(spot => {
         newState[spot.id] = spot

@@ -52,9 +52,9 @@ export default function CreateSpot({setShowCreate}) {
 
         let newSpot = await dispatch(createSpotThunk(payload))
         if (newSpot) {
+          history.push(`/spots/${newSpot.id}`)
           setShowCreate(false)
           // await dispatch(getSpotThunk(newSpot.id))
-          // history.push(`/api/spots/${newSpot.id}`)
         }
 
     }

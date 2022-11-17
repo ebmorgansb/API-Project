@@ -1,21 +1,4 @@
-/* .allSpotStyle {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-} */
 
-/* .footer {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-    bottom: 0;
-    position: sticky;
-    margin-top: 20px;
-    border-top: 1px solid grey;
-    background-color: white;
-    height: 42px;
-} */
 
 .gitLogo {
     height: 30px;
@@ -55,11 +38,23 @@ body {
 margin: 0px;
 position: relative;
 }
-.footer {
+/* .footer {
     display: fixed;
     position: fixed;
     left: 0 ; right: 0; bottom: 0;
     height:42px;
     box-sizing: border-box;
+    max-height: 42px;
+} */
+
+.footer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    bottom: 0;
+    position: sticky;
+    border-top: 1px solid grey;
+    background-color: white;
     max-height: 42px;
 }
