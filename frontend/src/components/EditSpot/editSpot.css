@@ -6,10 +6,11 @@
     padding-right: 35px;
     padding-bottom: 35px;
     padding-left: 35px;
+    margin-bottom: 10px;
     width: 550px;
     height: 625px;
     font-family: 'Times New Roman', Times, serif;
-
+    overflow-y: scroll;
 }
 
 .formInputs {
@@ -29,7 +30,7 @@
 
 .oneFormInput {
     padding: 4px;
-    
+
 }
 
 .formPadding {
@@ -43,7 +44,7 @@
     border: 1px solid black;
 }
 
-.errors {
+/* .errors {
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -52,9 +53,13 @@
 
 .oneError {
     font-size: 10px;
-}
+} */
 
 .actualInput {
     border-radius: 4px;
     border: 1px solid black;
+}
+
+.title {
+    margin-left: 35px;
 }

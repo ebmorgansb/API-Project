@@ -61,12 +61,12 @@ export default function CreateSpot({setShowCreate}) {
 
     return (
       <>
-      <ul>
+  <h2 className="title">Add a Spot!</h2>
+  <ul className="errors">
       {errors.map((error) => (
         <li key={error}> {error}</li>))}
       </ul>
   <div className="fullSpotForm">
-    <h2>Add a Spot</h2>
      <form onSubmit={handleSubmit}>
       <div className="formInputs">
       <div className="oneFormInput">

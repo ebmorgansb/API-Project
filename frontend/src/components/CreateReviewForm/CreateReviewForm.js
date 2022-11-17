@@ -41,12 +41,12 @@ export default function CreateReviewForm({setShowModal}) {
 
     return (
       <>
+      <h2 className="title">Add a Review</h2>
       <ul>
       {errors.map((error) => (
         <li key={error}> {error}</li>))}
       </ul>
     <div className="fullReviewForm">
-      <h2>Add a Review</h2>
      <form  onSubmit={handleSubmit}>
       <div className="formInputs">
     <div className="oneFormInput">
@@ -62,7 +62,23 @@ export default function CreateReviewForm({setShowModal}) {
         </div>
      </label>
      </div>
-     <div className="oneFormInput">
+     <div className="formPadding">
+     <label>
+                Stars
+                <select
+                    onChange={(e) => setStars(e.target.value)}
+                    value={stars}
+                    required
+                >
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                </select>
+            </label>
+            </div>
+     {/* <div className="oneFormInput">
      <label className="fontForm">
         Stars: {stars}
         <div className="formPadding">
@@ -76,7 +92,7 @@ export default function CreateReviewForm({setShowModal}) {
         />
         </div>
         </label>
-        </div>
+        </div> */}
         </div>
         <button className="reviewSubmitButton" type='submit'>Submit</button>
       </form>
