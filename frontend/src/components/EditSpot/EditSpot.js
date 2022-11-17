@@ -60,13 +60,12 @@ export default function EditSpot({setShowModal}) {
 
     return (
       <>
-      <h2 className="title">Edit your Spot!</h2>
-    <div className="fullSpotForm">
-    <ul className="errors">
+    <h2 className="title">Edit your Spot!</h2>
+     <form className="fullSpotEditForm" onSubmit={handleSubmit}>
+     <ul className="errors">
       {errors.map((error) => (
-        <li key={error}> {error}</li>))}
+        <li className='oneError' key={error}> {error}</li>))}
       </ul>
-     <form onSubmit={handleSubmit}>
      <div className="formInputs">
      <div className="oneFormInput">
      <label>
@@ -158,9 +157,9 @@ export default function EditSpot({setShowModal}) {
         </label>
         </div>
         </div>
-        <button className="spotSubmitButton" type='submit'>Submit</button>
+        <button className="spotEditButton" type='submit'>Submit</button>
       </form>
-      </div>
+      {/* </div> */}
       </>
     )
 }

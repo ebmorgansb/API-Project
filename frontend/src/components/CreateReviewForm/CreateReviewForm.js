@@ -42,9 +42,9 @@ export default function CreateReviewForm({setShowModal}) {
     return (
       <>
       <h2 className="title">Add a Review</h2>
-      <ul>
+      <ul className="errors">
       {errors.map((error) => (
-        <li key={error}> {error}</li>))}
+        <li> {error}</li>))}
       </ul>
     <div className="fullReviewForm">
      <form  onSubmit={handleSubmit}>
