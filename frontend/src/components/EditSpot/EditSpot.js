@@ -135,7 +135,7 @@ export default function EditSpot({setShowModal}) {
         <div className="oneFormInput">
         Description
         <div className="formPadding">
-        <textarea className="textAreaInput"
+        <textarea className="textAreaInputEdit"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}

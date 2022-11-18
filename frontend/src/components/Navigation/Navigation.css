@@ -112,3 +112,21 @@
 .hamButton2:hover {
     background-color: rgb(19, 120, 202, .2);
 }
+
+.profile-dropdownLogOut {
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    height: 75px;
+    right: 0;
+    width: 200px;
+    top: 3rem;
+    /* border-radius: 15px; */
+    /* box-shadow: 5px 1px 1px rgb(0 0 0 / 10%); */
+    /* border: 1px solid black; */
+    margin-right: 20px;
+    margin-top: 0px;
+}

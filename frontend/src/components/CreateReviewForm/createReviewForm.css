@@ -3,11 +3,10 @@
     flex-direction: column;
     justify-content: center;
     padding-top: 0px;
-    padding-bottom: 35px;
     padding-left:35px;
     padding-right:35px;
     width: 450px;
-    height: 300px;
+    height: 265px;
     font-family: 'Times New Roman', Times, serif;
 
 }
@@ -21,6 +20,7 @@
     margin-top: 10px;
     border-radius: 5px;
 }
+
 
 .write-review-title {
     padding-bottom: 18px;
@@ -50,4 +50,16 @@
 
 .title {
     margin-left: 35px;
+}
+
+.oneReviewError {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.reviewErrors {
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    /* margin-top: 10px; */
 }

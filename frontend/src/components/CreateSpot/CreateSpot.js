@@ -136,7 +136,7 @@ export default function CreateSpot({setShowCreate}) {
         <div className="oneFormInput">
         Description
         <div className="formPadding">
-        <textarea className="textAreaInput"
+        <textarea className="textAreaInputCreate"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
