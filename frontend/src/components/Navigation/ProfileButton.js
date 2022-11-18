@@ -36,8 +36,10 @@ function ProfileButton({ user, setLogin, setShowModal }) {
       </button>
       {showMenu && ( user ?
        ( <div className="profile-dropdownLogOut">
+          <div className="userAndEmail">
           <div>{user.username}</div>
           <div>{user.email}</div>
+          </div>
             <button className="hamButton2" onClick={logout}>Log Out</button>
         </div>) :
         <div className="profile-dropdown">
