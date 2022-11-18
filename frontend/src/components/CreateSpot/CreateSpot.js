@@ -29,8 +29,8 @@ export default function CreateSpot({setShowCreate}) {
       if(!country) errors.push("Country is required")
       if(name.length > 50) errors.push("Name must be less than 50 characters")
       if(!description) errors.push("Description is required")
-      if(price < 0 || !price) errors.push("Price per day is required")
-
+      if(!price) errors.push("Price per day is required")
+      if(price < 1) errors.push("Price must be greater than $0")
 
       setErrors(errors)
     },[price, address, city, state, country, name, description, sessUser])
@@ -56,8 +56,7 @@ export default function CreateSpot({setShowCreate}) {
           setShowCreate(false)
           // await dispatch(getSpotThunk(newSpot.id))
         }
-
-    }
+      }
 
     return (
       <>
@@ -171,7 +170,7 @@ export default function CreateSpot({setShowCreate}) {
         </label>
         </div>
         </div>
-        <button className="spotSubmitButton" type='submit'>Submit</button>
+        <button className="spotSubmitButton" disabled={errors.length > 0} type='submit'>Submit</button>
       </form>
     </>
     )

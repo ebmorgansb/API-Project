@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom'
 export default function AllReviews () {
 
   const [showModal, setShowModal] = useState(false);
+  // const [reviewUserIds, setReviewUserIds] = useState([])
 
   let {spotId} = useParams()
   spotId = parseInt(spotId)
@@ -20,12 +21,15 @@ export default function AllReviews () {
   const sessionUserObject = useSelector(state => state.session.user);
   const reviewsObject = useSelector(state => state.review)
 
-  
+
   let totalRating = 0
+  let userIds = []
   if (reviewsObject) {
     reviews = Object.values(reviewsObject)
     console.log('Reviews Array', reviews)
     reviews.forEach(review => {
+      let userId = review.userId
+      // setReviewUserIds.push(userId)
       totalRating += review.stars
     })
   }
@@ -74,3 +78,8 @@ return (
 </>
 )
 }
+// {reviews.map(review => (
+//   {sessionUserObject?.id  === review.id &&
+//    <button className='crudButton2' onClick={() => setShowModal(true)}>Create a Review</button>
+//    }
+// ))}

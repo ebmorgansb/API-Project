@@ -15,10 +15,10 @@ export default function CreateReviewForm({setShowModal}) {
     const {spotId} = useParams()
     const [errors, setErrors] = useState([]);
 
+
     useEffect(()=>{
       const errors = []
       if(!review) errors.push("Review text is required")
-      if(!stars) errors.push("Stars must be an integer from 1 to 5")
       setErrors(errors)
     },[review, stars])
 
@@ -78,21 +78,6 @@ export default function CreateReviewForm({setShowModal}) {
                 </select>
             </label>
             </div>
-     {/* <div className="oneFormInput">
-     <label className="fontForm">
-        Stars: {stars}
-        <div className="formPadding">
-        <input
-          type="range"
-          min="1" max="5"
-          step="1"
-          value={stars}
-          onChange={(e) => setStars(e.target.value)}
-          required
-        />
-        </div>
-        </label>
-        </div> */}
         </div>
         <button className="reviewSubmitButton" type='submit'>Submit</button>
       </form>

@@ -74,5 +74,7 @@
 }
 
 .reviewDescrip {
-    font-size: 12px
+    font-size: 12px;
+    word-break: break-word;
+    overflow-y: auto;
 }
