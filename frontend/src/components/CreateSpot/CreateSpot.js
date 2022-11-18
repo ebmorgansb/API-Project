@@ -149,7 +149,7 @@ export default function CreateSpot({setShowCreate}) {
         Price
         <div className="formPadding">
         <input className="actualInput"
-          type="text"
+          type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required

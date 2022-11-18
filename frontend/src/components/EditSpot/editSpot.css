@@ -9,7 +9,7 @@
     margin-bottom: 10px;
     margin-top: 0px;
     width: 550px;
-    height: 600px;
+    height: 610px;
     overflow-y: scroll;
 }
 
@@ -26,6 +26,7 @@
     color: white;
     margin-top: 10px;
     border-radius: 5px;
+    min-height: 50px;
 }
 
 .oneFormInput {
