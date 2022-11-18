@@ -41,18 +41,14 @@ function ProfileButton({ user, setLogin, setShowModal }) {
             <button className="hamButton" onClick={logout}>Log Out</button>
         </ul>) :
         <div className="profile-dropdown">
-          <div>
-            <button className="hamButton" onClick={() => {
+            <button className="hamButton1" onClick={() => {
               setLogin(true)
               setShowModal(true)
             }}>Log in</button>
-          </div>
-          <div>
-            <button className="hamButton" onClick={() => {
+            <button className="hamButton2" onClick={() => {
               setLogin(false)
               setShowModal(true)
             }}>Sign Up</button>
-          </div>
         </div>
       )}
     </>
