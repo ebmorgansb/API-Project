@@ -31,14 +31,18 @@ function ProfileButton({ user, setLogin, setShowModal }) {
   return (
     <>
       <button className='coolButton' onClick={openMenu}>
+        <div className="bars">
         <i className="fa-solid fa-bars" />
-        <i className="fas fa-user-circle" />
+        </div>
+        <div className="profileFace">
+        <i className="fas fa-user-circle fa-2x" />
+        </div>
       </button>
       {showMenu && ( user ?
        ( <div className="profile-dropdownLogOut">
           <div className="userAndEmail">
-          <div>{user.username}</div>
-          <div>{user.email}</div>
+          <div className="username">{user.username}</div>
+          <div className="email">{user.email}</div>
           </div>
             <button className="hamButton2" onClick={logout}>Log Out</button>
         </div>) :
