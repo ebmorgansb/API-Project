@@ -158,7 +158,7 @@ export default function EditSpot({setShowModal}) {
         </label>
         </div>
         </div>
-        <button className="spotEditButton" type='submit'>Submit</button>
+        <button className="spotEditButton" disabled={errors.length > 0} type='submit'>Submit</button>
       </form>
       {/* </div> */}
       </>
