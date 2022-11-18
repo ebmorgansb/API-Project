@@ -16,10 +16,11 @@ export default function AllReviews () {
   spotId = parseInt(spotId)
   const dispatch = useDispatch()
   let reviews = []
-  // let reviewImages = []
+
   const sessionUserObject = useSelector(state => state.session.user);
   const reviewsObject = useSelector(state => state.review)
-  const spotObject = useSelector(state => state.spot[spotId])
+
+  
   let totalRating = 0
   if (reviewsObject) {
     reviews = Object.values(reviewsObject)

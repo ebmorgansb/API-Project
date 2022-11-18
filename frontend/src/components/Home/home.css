@@ -31,30 +31,23 @@ body {
     height: 100vh
 } */
 
-.root {
+#root {
     height: 100vH;
 }
 html { height: 100%; }
+
 body {
 margin: 0px;
 position: relative;
 }
-/* .footer {
-    display: fixed;
-    position: fixed;
-    left: 0 ; right: 0; bottom: 0;
-    height:42px;
-    box-sizing: border-box;
-    max-height: 42px;
-} */
 
 .footer {
     display: flex;
+    position: sticky;
+    bottom: 0;
     align-items: center;
     flex-direction: row;
     justify-content: space-around;
-    bottom: 0;
-    position: sticky;
     border-top: 1px solid grey;
     background-color: white;
     max-height: 42px;
