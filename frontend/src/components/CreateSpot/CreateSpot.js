@@ -161,7 +161,7 @@ export default function CreateSpot({setShowCreate}) {
         Preview Image
         <div className="formPadding">
         <input className="actualInput"
-          type="text"
+          type="url"
           value={previewImage}
           onChange={(e) => setPreviewImage(e.target.value)}
           required

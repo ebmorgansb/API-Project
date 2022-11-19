@@ -29,10 +29,14 @@ export default function OneSpot() {
 
         const spotObject = useSelector(state => state.spot[spotId])
         const sessionUserObject = useSelector(state => state.session.user);
+
+        // let isOwner = spot?.ownerId === user?.id;
+
         const reviewsObject = useSelector(state => state.review)
         let reviews = []
         if (reviewsObject) {
             reviews = Object.values(reviewsObject)
+
         }
         const spotImages = spotObject?.SpotImages
         if (!spotObject || !spotObject.SpotImages) {
@@ -140,8 +144,9 @@ export default function OneSpot() {
             <div className="editDeleteSpot">
             <button className='crudButton2' onClick={() => setShowModal(true)}>Edit your spot</button>
             {showModal && (
+                
             <Modal onClose={() => setShowModal(false)}>
-            <EditSpot setShowModal={setShowModal}/>
+            <EditSpot setShowModal={setShowModal} spot={spotObject}/>
             </Modal>
             )}
             <NavLink to={`/`}>

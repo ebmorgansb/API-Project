@@ -6,17 +6,18 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import './editSpot.css'
 
-export default function EditSpot({setShowModal}) {
+export default function EditSpot({spot, setShowModal}) {
+
     const dispatch = useDispatch()
     const history = useHistory()
     const {spotId} = useParams()
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [country, setCountry] = useState('');
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState('');
+    const [address, setAddress] = useState(spot.address || '');
+    const [city, setCity] = useState(spot.city || '');
+    const [state, setState] = useState(spot.state || '');
+    const [country, setCountry] = useState(spot.country || '');
+    const [name, setName] = useState(spot.name || '');
+    const [description, setDescription] = useState(spot.description || '');
+    const [price, setPrice] = useState(spot.price || '');
     const [errors, setErrors] = useState([]);
     const sessUser = useSelector(state => state.session.user)
 
@@ -51,17 +52,19 @@ export default function EditSpot({setShowModal}) {
 
 
         let newSpot = await dispatch(editSpotThunk(spotId, payload))
+        .then(() => setShowModal(false))
+
 
         if (newSpot) {
           //The below code is fetching the old Spot
           await dispatch(getSpotThunk(newSpot.id))
-          setShowModal(false)
+          // setShowModal(false)
         }
     }
 
     return (
       <>
-    <h2 className="title">Edit your Spot!</h2>
+     <h2 className="title">Edit your Spot!</h2>
      <form className="fullSpotEditForm" onSubmit={handleSubmit}>
      <ul className="errors">
       {errors.map((error) => (
@@ -160,7 +163,6 @@ export default function EditSpot({setShowModal}) {
         </div>
         <button className="spotEditButton" disabled={errors.length > 0} type='submit'>Submit</button>
       </form>
-      {/* </div> */}
       </>
     )
 }
