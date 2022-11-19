@@ -77,4 +77,5 @@
     font-size: 12px;
     word-break: break-word;
     overflow-y: auto;
+    height: 100px;
 }
