@@ -11,7 +11,7 @@ export default function CreateReviewForm({setShowModal}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const [review, setReview] = useState('');
-    const [stars, setStars] = useState('');
+    const [stars, setStars] = useState(1);
     const {spotId} = useParams()
     const [errors, setErrors] = useState([]);
 
