@@ -32,6 +32,7 @@ export default function CreateSpot({setShowCreate}) {
       if(!country) errors.push("Country is required")
       if(country.length > 49) errors.push("Country must be less than 50 characters")
       if(name.length > 49) errors.push("Name must be less than 50 characters")
+      if(!name) errors.push("Name is required")
       if(!description) errors.push("Description is required")
       if(description.length > 999) errors.push("Description must be less than 1000 characters")
       if(!price) errors.push("Price per day is required")
