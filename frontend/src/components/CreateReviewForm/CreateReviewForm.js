@@ -19,6 +19,7 @@ export default function CreateReviewForm({setShowModal}) {
     useEffect(()=>{
       const errors = []
       if(!review) errors.push("Review text is required")
+      if (review.length > 999)  errors.push("Review must be less than 1000 characters")
       setErrors(errors)
     },[review, stars])
 
