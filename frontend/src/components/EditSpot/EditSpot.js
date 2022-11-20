@@ -31,6 +31,7 @@ export default function EditSpot({spot, setShowModal}) {
       if(!state) errors.push("State is required")
       if(state.length > 99) errors.push("State must be less than 100 characters")
       if(!country) errors.push("Country is required")
+      if(country.length > 49) errors.push("Country must be less than 50 characters")
       if(name.length > 49) errors.push("Name must be less than 50 characters")
       if(!description) errors.push("Description is required")
       if(description.length > 999) errors.push("Description must be less than 1000 characters")
