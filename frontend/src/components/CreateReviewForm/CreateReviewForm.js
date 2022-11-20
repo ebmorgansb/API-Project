@@ -80,7 +80,7 @@ export default function CreateReviewForm({setShowModal}) {
             </label>
             </div>
         </div>
-        <button className="reviewSubmitButton" type='submit'>Submit</button>
+        <button className="reviewSubmitButton" disabled={errors.length > 0} type='submit'>Submit</button>
       </form>
     </div>
     </>
