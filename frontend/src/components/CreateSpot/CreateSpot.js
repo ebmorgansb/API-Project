@@ -36,6 +36,7 @@ export default function CreateSpot({setShowCreate}) {
       if(description.length > 999) errors.push("Description must be less than 1000 characters")
       if(!price) errors.push("Price per day is required")
       if(price < 1) errors.push("Price must be greater than $0")
+      if (price.toString().length > 9) errors.push("Price must be less than 10 characters")
 
       setErrors(errors)
     },[price, address, city, state, country, name, description, sessUser])
