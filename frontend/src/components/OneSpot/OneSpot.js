@@ -106,7 +106,7 @@ export default function OneSpot() {
 
                 <div className="symbolAndText">
                     <div>Self Check-in for your convience!</div>
-                    <div>John is a superhost!</div>
+                    <div>{spotObject.User.firstName} is a superhost!</div>
                     <div>Free cancellation before 48 hours.</div>
                 </div>
             </div>
@@ -129,7 +129,7 @@ export default function OneSpot() {
                 Service Fee = $25
             </div>
             <div className="bookingText">
-                Total Fee Before Taxes = {spotObject.price * 2 + 50+ 25}
+                Total Fee Before Taxes = ${spotObject.price * 2 + 50+ 25}
             </div>
         </div>
 
@@ -144,7 +144,7 @@ export default function OneSpot() {
             <div className="editDeleteSpot">
             <button className='crudButton2' onClick={() => setShowModal(true)}>Edit your spot</button>
             {showModal && (
-                
+
             <Modal onClose={() => setShowModal(false)}>
             <EditSpot setShowModal={setShowModal} spot={spotObject}/>
             </Modal>
