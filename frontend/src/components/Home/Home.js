@@ -4,7 +4,7 @@ import gitLogo from '../../allImages/github-logo.png';
 import inLogo from '../../allImages/in.png';
 
 function Home () {
-
+// TEST
     return (
       <>
       <div className='homeDiv'>
