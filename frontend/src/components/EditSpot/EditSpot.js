@@ -20,7 +20,7 @@ export default function EditSpot({spot, setShowModal}) {
     const [price, setPrice] = useState(spot.price || '');
     const [errors, setErrors] = useState([]);
     const sessUser = useSelector(state => state.session.user)
-
+//test
     useEffect(()=>{
       const errors = []
       if(!sessUser) errors.push("Must be logged in to Host a spot")
