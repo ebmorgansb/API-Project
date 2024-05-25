@@ -35,6 +35,13 @@ if (!isProduction) {
     })
   );
 
+// Middleware to keep connections alive
+app.use((req, res, next) => {
+  res.setHeader('Connection', 'keep-alive');
+  next();
+});
+
+
   // backend/app.js
 const routes = require('./routes');
 
